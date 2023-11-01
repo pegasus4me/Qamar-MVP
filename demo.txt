@@ -1,0 +1,77 @@
+  const [url, setUrl] = useState<any>();
+
+
+try {
+      const formData = new FormData();
+      formData.append("file", url);
+      
+      const imageUpload = await fetch("/api/post", {
+        method: "POST",
+        body: formData,
+      });
+      if (!imageUpload.ok) throw new Error(await imageUpload.text())
+     
+      console.log('dd', imageUpload)
+    } catch (error : any) {
+      console.log(error)
+    }
+
+
+<Label>Image Profile</Label>
+        <Input
+          type="file"
+          className="max-w-[40%]"
+          accept=".jpg, .png, .gif, .jpeg"
+          {...formValidation.register("imageUrl")}
+        />
+
+
+
+
+
+
+
+
+ // if(!file) {
+    //     return NextResponse.json({ code: false })
+    // }
+    // const bytes = await file.arrayBuffer()
+    // const buffer = Buffer.from(bytes)
+
+    // const imageData = await uploadImage(file.name);
+
+     const formData = await req.formData();
+    const file: File | null  = formData.get("file") as unknown as File;
+
+    console.log("sdfsdfkjsdjfsdf", file)
+
+
+          // second endpoint call --save user Image
+      //@ts-ignore
+      // let filePath = imageUrl?.[0] as File;
+      // const formData = new FormData();
+      // formData.append("image", filePath as File);
+
+      // const uploadImg = await axios.post("/api/upload", formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });$
+
+
+
+       {/* <UploadButton
+        className="ut-button:bg-[#230E49]"
+          endpoint="image"
+          onClientUploadComplete={(res) => {
+            setImgUrl(res?.[0].url);
+            toast({
+              title: "image uploaded",
+            });
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            alert(`ERROR! ${error.message}`);
+            
+          }}
+        /> */}
