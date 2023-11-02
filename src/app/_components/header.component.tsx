@@ -57,11 +57,13 @@ const Header = () => {
                 <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link href={`user/${session?.user?.id}/Profile`}>
+                  <Link href={`/user/${session?.user.id}/profile`}>
                     Profile
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>Coachings</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href={`/user/${session?.user.id}/coachings`}>coachings</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
                 {session.user.Role === "COACH" ? (
                   <DropdownMenuItem className="md:hidden flex gap-2">create new Post 

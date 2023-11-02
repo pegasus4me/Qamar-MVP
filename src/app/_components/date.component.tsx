@@ -52,15 +52,14 @@ const DateComponent = ({ dates, name }: { dates: Date[] | undefined, name :strin
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-medium text-lg mt-5">chose your interview Date</FormLabel>
-              <Select onValueChange={field.onChange} 
-              >
+              <Select onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a avalaible date" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectGroup>
+                  <SelectGroup >
                     <SelectLabel>chose your date</SelectLabel>
                     {dates?.length !== 0
                       ? dates?.map((date: Date, index: number) => {

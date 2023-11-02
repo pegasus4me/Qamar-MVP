@@ -29,7 +29,7 @@ const CardModal = ({coachname,  book }: { coachname: string; book: () => void })
       </CardHeader>
 
       <CardContent className="flex justify-center">
-        <Button className="max-w-full items-center" onClick={book}>
+        <Button className="max-w-full items-center bg-[#230E49]" onClick={book}>
           Book mock case with {coachname}
         </Button>
       </CardContent>

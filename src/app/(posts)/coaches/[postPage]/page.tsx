@@ -12,12 +12,12 @@ import Image from "next/image";
 import DateComponent from "@/app/_components/date.component";
 import { ContextProvider } from "@/lib/contexProvider";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/navigation";
 const PostPage = ({ params }: { params: { postPage: string } }) => {
-  
+  const router = useRouter();
   const [data, setData] = useState<TPost[]>([]);
-  const [message, setMessage] = useState<string | undefined>("")
+  const [message, setMessage] = useState<string | undefined>("");
   const { data: session } = useSession();
-  
   const { date } = useContext(ContextProvider);
 
   async function fetchData(): Promise<TPost | void> {
@@ -34,9 +34,21 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   }
 
   async function sendReservation() {
+    try {
+      const sendNewReservation = await axios.post("/api/reservation/new", {
+        message,
+        postId: params.postPage,
+        authorId: session?.user.id,
+        DateReserved: date,
+      });
 
+      if (sendNewReservation.status === 200) {
+        router.push(`/coaches/${params.postPage}/succes`);
+      }
+    } catch (error: any) {
+      console.error("err =>",error);
+    }
   }
-
 
   useEffect(() => {
     fetchData();
@@ -59,7 +71,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               key={index}
               className="flex lg:justify-between lg:max-w-full lg:h-[1060px] lg:flex-row flex-col max-w-fit gap-5"
             >
-              <div className="p-5 lg:min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
+              <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
                 <div className="flex gap-4">
                   <div>
                     <Image
@@ -102,14 +114,21 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   </Badge>
                 </div>
                 <article className="mt-3 p-3">
-                  <DateComponent dates={v.disponibilities} name={v.author?.name as string} />
+                  <DateComponent
+                    dates={v.disponibilities}
+                    name={v.author?.name as string}
+                  />
                 </article>
-                
+
                 <div className="p-3 max-w-[850px] flex flex-col">
-                <label className="font-semibold text-lg mt-3 mb-2">add optional message</label>
+                  <label className="font-semibold text-lg mt-3 mb-2">
+                    add optional message
+                  </label>
                   <Textarea
-                  placeholder="optional message for the interviewver if you have something to tell him"
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
+                    placeholder="optional message for the interviewver if you have something to tell him"
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      setMessage(e.target.value)
+                    }
                   />
                 </div>
               </div>
@@ -117,10 +136,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               <div>
                 <CardModal
                   coachname={v.author?.name as string}
-                  book={function (): void {
-                    // envoyer vers l'etape 2 : book un temps : puis payer
-                    throw new Error("Function not implemented.");
-                  }}
+                  book={() => sendReservation()}
                 />
               </div>
             </div>
