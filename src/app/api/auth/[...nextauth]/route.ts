@@ -90,6 +90,9 @@ const handler = NextAuth({
         //     if(url.startsWith('/'))
         // }
     },
+    events : {
+        
+    }
 
     secret: process.env.NEXT_AUTH_SECRET
 })

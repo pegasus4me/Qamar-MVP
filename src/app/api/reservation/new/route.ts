@@ -10,7 +10,6 @@ export const POST = async (req: Request) => {
         postId
     }: Treservation = await req.json()
 
-    console.log(message, DateReserved, authorId, postId)
     // verification de la date de reservation si elle existe on throw
     const checkReservationDate = await prisma.reservation.findFirst({
         where: {

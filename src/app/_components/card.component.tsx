@@ -9,18 +9,26 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
-const CardModal = ({coachname,  book }: { coachname: string; book: () => void }) => {
+const CardModal = ({
+  coachname,
+  book,
+  price,
+}: {
+  coachname: string;
+  book: () => void;
+  price: string;
+}) => {
   return (
     <Card className="min-w-[300px] rounded-sm shadow-sm p-3">
       <CardHeader>
         <CardTitle className="mb-5">Book a Session</CardTitle>
         <CardDescription className="flex gap-2">
           <Check />
-          60-min 1:1 session on Zoom
+          money is hold until you validate is all good
         </CardDescription>
         <CardDescription className="flex gap-2">
           <Check />
-          Verbal on-spot feedback
+          refound offered if you are not satisfied 
         </CardDescription>
         <CardDescription className="flex gap-2">
           <Check />
@@ -30,7 +38,7 @@ const CardModal = ({coachname,  book }: { coachname: string; book: () => void })
 
       <CardContent className="flex justify-center">
         <Button className="max-w-full items-center bg-[#230E49]" onClick={book}>
-          Book mock case with {coachname}
+          Book mock case with {coachname} for ${price}
         </Button>
       </CardContent>
     </Card>

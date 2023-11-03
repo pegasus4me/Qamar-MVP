@@ -10,7 +10,7 @@ const Succes = () => {
 
   return (
     <div className="flex justify-center flex-col items-center gap-4 mt-11 p-4">
-      <h1 className="text-2xl font-semibold opacity-50">
+      <h1 className="text-2xl font-medium opacity-50">
         Reservation succesfully booked
       </h1>
       <Image src={check} alt="confimation"></Image>
