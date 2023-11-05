@@ -24,7 +24,12 @@ import { useSession } from "next-auth/react";
 const postSchema = z.object({
   title: z.string(),
   description: z.string(),
-  price: z.number().or(z.string().transform(Number).refine((v) => v * 1.025)),
+  price: z.number().or(
+    z
+      .string()
+      .transform(Number)
+      .refine((v) => v * 1.025)
+  ),
   yearsExperience: z.string(),
   imageUrl: z.any(),
   currentCompany: z.string(),
@@ -47,13 +52,12 @@ const Create = ({ params }: { params: { id: string } }) => {
     resolver: zodResolver(postSchema),
   });
 
-
-  const PostSubmit: SubmitHandler<Omit<TPost, "userId" | "profilePic">
+  const PostSubmit: SubmitHandler<
+    Omit<TPost, "userId" | "profilePic">
   > = async (data: Omit<TPost, "userId" | "profilePic">) => {
-
-    console.log(data)
+    console.log(data);
     // error handling
-    
+
     if (Object.keys(formValidation.formState.errors).length !== 0) {
       toast({
         title: "un error occured, retry",

@@ -96,13 +96,15 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
               <div className="flex gap-4">
                 <div>
-                  <Image
-                    src={String(v.profilePic)}
-                    alt="image user"
-                    width={170}
-                    height={170}
-                    className="rounded-xs"
-                  ></Image>
+                  {v.profilePic && (
+                    <Image
+                      src={String(v.profilePic)}
+                      alt="image user"
+                      width={170}
+                      height={170}
+                      className="rounded-xs"
+                    ></Image>
+                  )}
                 </div>
                 <div>
                   <h2 className="text-xl font-medium">{v.author?.name}</h2>
