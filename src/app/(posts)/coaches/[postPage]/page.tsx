@@ -79,7 +79,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
   useEffect(() => {
     fetchData();
-  }, [session, date]);
+  }, [session, date, data]);
 
   return (
     <div className=" p-5 md:max-w-[1900px] m-auto max-w-[1600px]">
