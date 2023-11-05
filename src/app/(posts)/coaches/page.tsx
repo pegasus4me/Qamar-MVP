@@ -1,6 +1,6 @@
 "use client";
 import PostComponent from "@/app/_components/post.component";
-import Research from "@/app/_components/ResearchBy.component";
+// import Research from "@/app/_components/ResearchBy.component";
 import { useRouter } from "next/navigation";
 import { findAllPosts } from "@/lib/db.allPosts";
 import { useEffect, useState } from "react";
