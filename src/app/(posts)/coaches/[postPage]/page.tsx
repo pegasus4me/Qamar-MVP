@@ -76,7 +76,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
   useEffect(() => {
     fetchData();
-  }, [session, date, data]);
+  }, [session, date]);
 
   return (
     <div className=" p-5 md:max-w-[1900px] m-auto max-w-[1600px]">
@@ -96,6 +96,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
               <div className="flex gap-4">
                 <div>
+                  {console.log(v.profilePic)}
                   {v.profilePic && (
                     <Image
                       src={String(v.profilePic)}
