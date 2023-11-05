@@ -37,8 +37,7 @@ const Coachings = ({ params }: { params: { id: string } }) => {
         id: id as string,
       },
     });
-
-    console.log("ddtt", coachPosts);
+    
     try {
       const createPayment = await axios.post("/api/checkout_sessions", {
         price: findRes.data.reservations.postReference.price,

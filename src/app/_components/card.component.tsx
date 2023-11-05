@@ -15,7 +15,7 @@ const CardModal = ({
   price,
 }: {
   coachname: string;
-  book: () => void;
+  book: () => Promise<void>;
   price: string;
 }) => {
   return (
