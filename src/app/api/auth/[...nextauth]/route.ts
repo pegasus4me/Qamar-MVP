@@ -1,5 +1,4 @@
 import NextAuth from "next-auth/next";
-import Google from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/lib/db.server";
 import { compare } from "bcrypt";
@@ -8,18 +7,6 @@ import { compare } from "bcrypt";
 const handler = NextAuth({
 
     providers : [
-        Google({
-            clientId : process.env.GOOGLE_CLIENT as string,
-            clientSecret : process.env.GOOGLE_SECRET as string,
-            authorization : {
-                params : {
-                    prompt :"consent",
-                    acces_type: "offline",
-                    response_type : "code"
-                }
-            }
-        }),
-
         CredentialsProvider({
             
             type: "credentials",
@@ -88,8 +75,6 @@ const handler = NextAuth({
         }
        
     },
-
-
     secret: process.env.NEXT_AUTH_SECRET
 })
 export { handler as GET, handler as POST }
