@@ -50,7 +50,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   }
   useEffect(() => {
     fetchData();
-  }, [session, date]);
+  }, [date]);
 
   // # function to initialise stipe session call ----> /api/reservation/new
   async function checkoutLink() {
