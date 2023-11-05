@@ -8,7 +8,7 @@ import { ArrowDownRight } from "lucide-react";
 interface EventRes extends Treservation {
   price?: number;
   coach?: string;
-  redirect? : (id:string) => Promise<any>;
+  redirect? : React.MouseEventHandler<HTMLButtonElement>
   seeMore: () => void;
 }
 

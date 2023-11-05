@@ -83,8 +83,8 @@ const Coachings = ({ params }: { params: { id: string } }) => {
                         message={r.message}
                         payed={r.payed}
                         DateReserved={new Date(r.DateReserved)}
-                        price={r.postReference.price}
-                        coach={r.postReference.authorName}
+                        price={r.postReference[0].price}
+                        coach={r.postReference[0].authorName}
                         redirect={() => payCoaching(r.id as string)}
                       />
                     );
