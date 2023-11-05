@@ -54,7 +54,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
   // # function to initialise stipe session call ----> /api/reservation/new
   async function checkoutLink() {
-    if (status === "unauthenticated") router.push("/register");
 
     const sendNewReservation = await axios.post("/api/reservation/new", {
       message,
