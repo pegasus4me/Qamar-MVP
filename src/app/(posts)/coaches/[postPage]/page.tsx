@@ -56,11 +56,11 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       authorName: session?.user.name,
     });
 
-    if (sendNewReservation?.status !== 200) {
+    if (sendNewReservation.status !== 200) {
       throw new Error("resevation failed");
     }
 
-    if (sendNewReservation?.data?.error === "date already reserved") {
+    if (sendNewReservation.data?.error === "date already reserved") {
       toast({
         title: "Date non avalaible",
         description: "choose another one to continue your booking 🪄",
@@ -69,7 +69,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
       return;
     }
-    if (sendNewReservation?.status === 200) {
+    if (sendNewReservation.status === 200) {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
