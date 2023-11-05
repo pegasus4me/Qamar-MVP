@@ -39,7 +39,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
     try {
       const res = await axios.get("/api/post/findById", {
         params: {
-          PostId: params?.postPage,
+          PostId: params.postPage,
         },
       });
       setData([res.data?.user]);
@@ -64,7 +64,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       </div>
     );
   }
-  // # function to initialise stipe session call ----> /api/reservation/new
   async function checkoutLink() {
     // if (status === "unauthenticated") router.push("/register");
 
@@ -89,7 +88,9 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
       return;
     }
+
     console.log(session?.user.id);
+
     if (sendNewReservation.status === 200) {
       router.push(`/user/${session?.user.id}/coachings`);
     }

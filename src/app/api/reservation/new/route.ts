@@ -1,6 +1,8 @@
 import prisma from "@/lib/db.server";
 import { NextResponse } from "next/server";
 import { Treservation } from "@/types/reservation";
+export const dynamic = 'force-dynamic'
+
 export const POST = async (req: Request) => {
 
     const {
