@@ -6,9 +6,9 @@ import { compare } from "bcrypt";
 
 const handler = NextAuth({
 
-    providers : [
+    providers: [
         CredentialsProvider({
-            
+
             type: "credentials",
 
             credentials: {
@@ -17,24 +17,24 @@ const handler = NextAuth({
             },
 
             async authorize(credentials) {
-                
-                if(!credentials?.email || !credentials?.password) 
+
+                if (!credentials?.email || !credentials?.password)
                     throw new Error("you must provide email or password");
 
                 const user = await prisma.user.findFirst({
-                    where :{
-                        email : credentials?.email
+                    where: {
+                        email: credentials?.email
                     }
                 })
 
-                if(!user || !user.hashedPassword) 
+                if (!user || !user.hashedPassword)
                     throw new Error("Email not registered or password incorrect");
-                
-                    const checkPaswword = await compare(credentials?.password, user.hashedPassword);
-                if(!checkPaswword) throw new Error('password not correct');
+
+                const checkPaswword = await compare(credentials?.password, user.hashedPassword);
+                if (!checkPaswword) throw new Error('password not correct');
 
                 return user;
-              }
+            }
         }),
     ],
 
@@ -43,16 +43,17 @@ const handler = NextAuth({
         error: "auth/error",
     },
 
-    jwt : {
+    jwt: {
         secret: process.env.NEXT_AUTH_JWT_SECRET,
         maxAge: 60 * 60 * 24 * 30,
     },
 
-    session : {
-        strategy : "jwt",
+    session: {
+        strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60, // 30 days
     },
-    callbacks : {
+
+    callbacks: {
         async jwt({ token, user }: { token: any, user: any }) {
             if (user) {
                 token.id = user.id;
@@ -73,7 +74,7 @@ const handler = NextAuth({
             return session;
 
         }
-       
+
     },
     secret: process.env.NEXT_AUTH_SECRET
 })
