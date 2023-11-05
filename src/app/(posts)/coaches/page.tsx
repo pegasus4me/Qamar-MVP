@@ -28,7 +28,7 @@ const Posts = () => {
       <div className="">
         {/* filter params */}
 
-        <Research />
+        {/* <Research /> */}
       </div>
 
       <div className="">
