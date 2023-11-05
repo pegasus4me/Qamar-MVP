@@ -16,7 +16,6 @@ import { useRouter } from "next/navigation";
 import { Globe } from "lucide-react";
 import { Check } from "lucide-react";
 import { VideoIcon } from "lucide-react";
-import getStripe from "@/lib/stripejs";
 import { RotatingLines } from "react-loader-spinner";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
@@ -99,7 +98,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   {console.log(v.profilePic)}
                   {v.profilePic && (
                     <Image
-                      src={String(v.profilePic)}
+                      src={String(v?.profilePic)}
                       alt="image user"
                       width={170}
                       height={170}

@@ -1,5 +1,4 @@
 "use client"
-import Header from "@/app/_components/header.component";
 import Provider from "@/lib/sessionProvider";
 import { ContextProvider } from "@/lib/contexProvider";
 import {useState} from "react";
@@ -18,7 +17,6 @@ export default function RootLayout({
           <ContextProvider.Provider value={{date, setDate}}>
             {children}
           </ContextProvider.Provider>
-
           {/* footer */}
         </Provider>
       </>
