@@ -35,10 +35,10 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
     try {
       const res = await axios.get("/api/post/findById", {
         params: {
-          PostId: params.postPage,
+          PostId: params?.postPage,
         },
       });
-      setData([res.data.user]);
+      setData([res.data?.user]);
     } catch (error: any) {
       console.error(error);
     }
