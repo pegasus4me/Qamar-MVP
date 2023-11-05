@@ -19,7 +19,7 @@ import axios from "axios";
 import { UploadDropzone } from "@uploadthing/react";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { useRouter } from "next/navigation";
-
+import { useSession } from "next-auth/react";
 const postSchema = z.object({
   title: z.string(),
   description: z.string(),
@@ -39,6 +39,7 @@ export type Post = z.infer<typeof postSchema>;
 const Create = ({ params }: { params: { id: string } }) => {
   const { toast } = useToast();
   const router = useRouter();
+  const {data:session} = useSession()
   const [avalaibles, setAvaibilties] = useState<Date[]>([]);
   const [imgUrl, setImgUrl] = useState<string | undefined>("");
   const formValidation = useForm<Post>({
@@ -89,7 +90,8 @@ const Create = ({ params }: { params: { id: string } }) => {
         whatsApp,
         linkedin,
         price,
-        experienceField
+        experienceField,
+        authorName: session?.user.name
       });
 
       if (res.status === 200) {

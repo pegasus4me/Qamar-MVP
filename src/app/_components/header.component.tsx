@@ -16,11 +16,15 @@ import Link from "next/link";
 import { signOut } from "next-auth/react"
 import { useRouter } from "next/navigation";
 import { PiPlusCircleBold } from "react-icons/pi";
+import { useEffect } from "react";
 
 const Header = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
   
+  useEffect(() => {
+
+  },[session])
   return (
     <div className=" justify-evenly flex md:justify-around items-center mb-10">
       <div className="flex items-center">

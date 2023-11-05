@@ -21,7 +21,6 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import Link from "next/link";
 import { IDateContext } from "@/lib/contexProvider";
 import { useContext } from "react";
 import { ContextProvider } from "@/lib/contexProvider";
@@ -63,6 +62,7 @@ const DateComponent = ({ dates, name }: { dates: Date[] | undefined, name :strin
                     <SelectLabel>chose your date</SelectLabel>
                     {dates?.length !== 0
                       ? dates?.map((date: Date, index: number) => {
+                        // ici faut filter les dates deja prises et garder seulement ceux qui sont encore disponibles !== non presente dans reserved
                           const convert = new Date(date);
                           return (
                             <SelectItem value={date.toString()} key={index}>

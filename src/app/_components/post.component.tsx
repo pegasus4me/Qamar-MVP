@@ -37,12 +37,11 @@ const PostComponent = ({
   price,
   company,
 }: PostComponent) => {
-  console.log("dd", imageurl);
   return (
     <Card className="min-w-full mb-5 p-4">
       <CardHeader className="flex flex-row gap-4 items-center">
         <Image
-          src={imageurl as string}
+          src={String(imageurl)}
           alt="image user"
           width={170}
           height={170}

@@ -9,3 +9,15 @@ export async function findAllPosts() {
     }
 }
 
+export async function findCoachPosts(id:string){
+    try {
+        const find = await axios.get("/api/user/coach/posts", {
+            params:  {
+                CoachId : id
+            }
+        })
+        return find.data
+    } catch (error : any) {
+        return error
+    }
+}

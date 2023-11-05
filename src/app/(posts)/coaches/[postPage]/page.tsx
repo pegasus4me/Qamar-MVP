@@ -17,6 +17,11 @@ import { Globe } from "lucide-react";
 import { Check } from "lucide-react";
 import { VideoIcon } from "lucide-react";
 import getStripe from "@/lib/stripejs";
+import { RotatingLines } from "react-loader-spinner";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { ShieldQuestion } from "lucide-react";
 
 const PostPage = ({ params }: { params: { postPage: string } }) => {
   const router = useRouter();
@@ -24,9 +29,11 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   const [message, setMessage] = useState<string | undefined>("");
   const [price, setPrice] = useState<number | null>(null);
   const [name, setName] = useState<string>("");
+  const [resid, setId] = useState("");
   const { data: session, status } = useSession();
   const { date } = useContext(ContextProvider);
 
+  const { toast } = useToast();
   //  # function to get post Data from api call ----> /api/post/findById
   async function fetchData(): Promise<TPost | void> {
     try {
@@ -40,59 +47,33 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       console.error(error);
     }
   }
-  // # function to initialise stipe session call ----> /api/checkout_sessions
-
+  // # function to initialise stipe session call ----> /api/reservation/new
   async function checkoutLink() {
-    const stripe = await getStripe();
-
-    if (!stripe) throw new Error("Stripe failed to initialize.");
-
-    data.map((item: TPost) => {
-      setPrice(item.price);
-      setName(item.author?.name as string);
-    });
-
-    try {
-      const checkout = await axios.post("/api/checkout_sessions", {
-        ProductName: name,
-        price: price,
-        postPageId: params.postPage,
-      });
-
-      let sessionId = checkout.data.session.id;
-      const stripeError = await stripe.redirectToCheckout({ sessionId });
-
-      if (stripeError) {
-        console.error(stripeError);
-      }
-
-      const { paymentIntent, error } = await stripe.confirmCardPayment(
-        process.env.STRIPE_SECRET_KEY as string
-      );
-      if (error) {
-        console.log("err", error);
-      }
-    } catch (error: any) {
-      return error;
-    }
-  }
-
-  // # main function to  and reserve a spot ----> /api/reservation/new
-  async function sendReservation() {
     if (status === "unauthenticated") router.push("/register");
 
-    try {
-      const checkoutcheck = await checkoutLink();
+    const sendNewReservation = await axios.post("/api/reservation/new", {
+      message,
+      postId: params.postPage,
+      authorId: session?.user.id,
+      DateReserved: date,
+      authorName: session?.user.name,
+    });
 
-      // const sendNewReservation = await axios.post("/api/reservation/new", {
-      //   message,
-      //   postId: params.postPage,
-      //   authorId: session?.user.id,
-      //   DateReserved: date,
-      // });
-      // console.log("dodododod", sendNewReservation);
-    } catch (error: any) {
-      console.error("err =>", error);
+    if (sendNewReservation.status !== 200) {
+      throw new Error("resevation failed");
+    }
+
+    if (sendNewReservation.data.error === "date already reserved") {
+      toast({
+        title: "Date non avalaible",
+        description: "choose another one to continue your booking 🪄",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
+
+      return;
+    }
+    if(sendNewReservation.status === 200) {
+      router.push(`/user/${session?.user.id}/coachings`)
     }
   }
 
@@ -164,8 +145,8 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                 />
               </article>
 
-              <div className="p-3 max-w-[850px] flex flex-col border ">
-                <label className="font-semibold text-lg mt-3 mb-2">
+              <div className="p-3 max-w-[850px] flex flex-col ">
+                <label className="font-medium text-lg mt-3 mb-2">
                   add optional message
                 </label>
                 <Textarea
@@ -190,20 +171,51 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   sessions hosted on Zoom
                 </p>
               </div>
+              <div className="mt-5">
+                <p className="flex gap-1 text-[#230E49] font-medium">
+                  how booking a coach works?
+                  <ShieldQuestion />
+                </p>
+                <div className="font-medium mt-4 opacity-50">
+                  <p>
+                    1 - schedule your preferred date to perform your interview
+                    remember each interview has a duration of 60 min
+                  </p>
+                  <p>
+                    2 - add a message if you have something more to say to your
+                    coach
+                  </p>
+                  <p>3 - confirm your booking</p>
+                  <p>
+                    4 - go to your coaching section and pay for the session.
+                    Your money is locked until you validate through an email
+                    that all goes well with your interviewer
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div>
               <CardModal
                 coachname={v.author?.name as string}
-                book={() => sendReservation()}
+                book={() => checkoutLink()}
                 price={String(v.price)}
               />
             </div>
           </div>
         ))
       ) : (
-        <p>error</p>
+        <div className="flex justify-center items-center mt-36">
+          <RotatingLines
+            strokeColor="purple"
+            strokeWidth="2"
+            animationDuration="0.75"
+            width="96"
+            visible={true}
+          />
+        </div>
       )}
+      <Toaster />
     </div>
   );
 };

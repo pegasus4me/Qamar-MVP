@@ -21,44 +21,36 @@ export const POST = async (req: Request) => {
         return NextResponse.json({ error: "date already reserved" })
     }
 
-    const createReservation = await prisma.reservation.create({
-        data: {
-            message,
-            DateReserved,
-
-            reservedBy: {
-                connect: {
-                    id: authorId
+    try {
+        const createReservation = await prisma.reservation.create({
+            data: {
+                message,
+                DateReserved,
+    
+                reservedBy: {
+                    connect: {
+                        id: authorId as string
+                    }
+                },
+                postReference: {
+                    connect: {
+                        id: postId as string
+                    }
                 }
             },
-            postReference: {
-                connect: {
-                    id: postId
-                }
+            include: {
+                reservedBy: true,
+                postReference: true,
             }
-        },
-        include: {
-            reservedBy: true,
-            postReference: true
-        }
-    })
-
-    return NextResponse.json({ succes: "date reserved for you", createReservation})
-
+        })
+    
+        
+        return NextResponse.json({ succes: "date reserved for you", createReservation, resId : createReservation.id})
+    
+    } catch (error : any) {
+        console.log("err", error)
+        return NextResponse.json({error})
+    }
+    
 }
 
-/**
- * 
- * model Reservation {
-    id            String   @id @default(auto()) @map("_id") @db.ObjectId
-    reservedBy    User     @relation(fields: [authorId], references: [id])
-    authorId      String   @unique @db.ObjectId
-    postReference Post     @relation(fields: [postId], references: [id])
-    postId        String   @db.ObjectId
-    createdAt     DateTime @default(now())
-    payed         Boolean  @default(false)
-    DateReserved  DateTime // Ajout du champ DateReserved
-    message       String?
-}
-
- */

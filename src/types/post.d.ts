@@ -1,3 +1,4 @@
+import { Treservation } from "./reservation"
 export type TPost = {
     id?: string
     imageUrl?: string | undefined
@@ -17,6 +18,11 @@ export type TPost = {
     profilePic? : string | null | undefined
     Title? : string
     author? : Author
+    authorName?: string
+}
+
+export interface ExtendPost extends TPost {
+    Reservation : Treservation[]
 }
 
 type Author = {

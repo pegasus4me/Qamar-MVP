@@ -1,32 +1,40 @@
 import Stripe from "stripe";
+import Cors from "micro-cors"
 import prisma from "@/lib/db.server";
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 const webhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET as string;
-
+const cors = Cors({
+    allowMethods: ["POST", "HEAD"],
+});
 
 export const POST = async (req: Request) => {
 
     const buf = await req.text();
-    const sig = req.headers.get("stripe-signature")!;
+    const sig = headers().get("stripe-signature")!;
     let event: Stripe.Event;
+
     try {
+
         event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
 
-        const purchase = event.data.object
-        console.log(purchase)
-        console.log("event ====", event)
+
         switch (event?.type) {
 
             case "payment_intent.succeeded":
-
+                console.log('icic', event.data.object.metadata.id)
                 await prisma.reservation.update({
                     where: {
-                        id: purchase.id,
+                        id: event.data.object.metadata.id,
                     },
                     data: {
                         payed: true
+                    },
+                    include: {
+                        reservedBy: true,
+                        postReference: true
                     }
                 })
                 break;

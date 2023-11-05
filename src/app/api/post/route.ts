@@ -17,22 +17,25 @@ export const POST = async (req: Request) => {
         whatsApp,
         twitter,
         disponibilities,
-        experienceField
+        experienceField,
+        author
 
     }: TPost = await req.json()
 
     const checkDuplicate = await prisma.post.findFirst({
         where: {
-            Title: title || description
+            Title: title 
         }
     })
 
-    if (checkDuplicate) NextResponse.json({ msg: "post already exist" })
+    if (checkDuplicate) {
+        return NextResponse.json({ msg: "post already exist" })
+    }
     try {
 
         const createPost = await prisma.post.create({
             data: {
-                profilePic : imageUrl,
+                profilePic: imageUrl,
                 experienceField,
                 description,
                 Title: title,
@@ -44,6 +47,8 @@ export const POST = async (req: Request) => {
                 whatsApp,
                 linkedin,
                 price,
+                authorName: author?.name,
+
                 author: {
                     connect: {
                         id: userId
@@ -52,7 +57,7 @@ export const POST = async (req: Request) => {
             },
             include: {
                 Reservation: true,
-                author : true
+                author: true
             }
 
         })

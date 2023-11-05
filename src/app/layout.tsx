@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Header from "./_components/header.component";
 import "./globals.css";
 import Provider from "@/lib/sessionProvider";
-
+import Strip from "./_components/strip";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <Header />
+          <Strip/>
           {children}
           {/* footer */}
         </Provider>

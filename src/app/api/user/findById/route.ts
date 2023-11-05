@@ -1,14 +1,13 @@
 import prisma from "@/lib/db.server";
 import { NextResponse } from "next/server";
 import { parse, UrlWithParsedQuery } from 'url';
-
+import axios from "axios";
 
 export const GET = async (req: Request) => {
     const parseUrl: UrlWithParsedQuery = parse(req.url, true);
     const { query } = parseUrl;
     const { id } = query;
-   
-    console.log("user id", id)
+
     try {
         const findUser = await prisma.user.findFirst({
             where: {
@@ -16,14 +15,16 @@ export const GET = async (req: Request) => {
             },
             include: {
                 Posts: true,
-                Reservations: true,
-    
+                Reservations: {
+                    include: {
+                        postReference: true,
+                    },
+                },
             }
         })
-    
-        return NextResponse.json({ reservations: findUser?.Reservations })
-    } catch (error : any) {
+        return NextResponse.json({ reservations: findUser?.Reservations, })
+    } catch (error: any) {
         console.log(error)
-        return NextResponse.json({error})
+        return NextResponse.json({ error })
     }
 }

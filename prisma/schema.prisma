@@ -46,7 +46,6 @@ model User {
     name           String
     profile_pic    String?
     hashedPassword String?
-
     Role         Role
     Reservations Reservation[]
     Posts        Post[]
@@ -91,8 +90,9 @@ model Post {
 model Reservation {
     id            String   @id @default(auto()) @map("_id") @db.ObjectId
     reservedBy    User     @relation(fields: [authorId], references: [id])
-    authorId      String   @unique @db.ObjectId
+    authorId      String   @db.ObjectId
     postReference Post     @relation(fields: [postId], references: [id])
+    authorName    String? 
     postId        String   @db.ObjectId
     createdAt     DateTime @default(now())
     payed         Boolean  @default(false)

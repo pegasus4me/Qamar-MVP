@@ -11,8 +11,9 @@ const Succes = () => {
   return (
     <div className="flex justify-center flex-col items-center gap-4 mt-11 p-4">
       <h1 className="text-2xl font-medium opacity-50">
-        Reservation succesfully booked
+        Your event have been sheduled 
       </h1>
+      <p>thanks for your trust</p>
       <Image src={check} alt="confimation"></Image>
       <Button className="max-w-[300px] bg-[#230E49]">
         <Link href={`/user/${session?.user.id}/coachings`}>go to your profile</Link>

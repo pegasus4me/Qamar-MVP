@@ -86,13 +86,9 @@ const handler = NextAuth({
             return session;
 
         }
-        // async redirect({url, baseUrl}) {
-        //     if(url.startsWith('/'))
-        // }
+       
     },
-    events : {
-        
-    }
+
 
     secret: process.env.NEXT_AUTH_SECRET
 })
