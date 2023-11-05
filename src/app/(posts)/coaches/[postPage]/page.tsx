@@ -32,9 +32,8 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   const { toast } = useToast();
 
   useEffect(() => {}, [session]);
-  
+
   //  # function to get post Data from api call ----> /api/post/findById
-  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   async function fetchData(): Promise<TPost | void> {
     try {
@@ -52,8 +51,22 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
     fetchData();
   }, [date]);
 
+  if (status === "loading") {
+    return (
+      <div className="flex justify-center items-center mt-36">
+        <RotatingLines
+          strokeColor="purple"
+          strokeWidth="2"
+          animationDuration="0.75"
+          width="96"
+          visible={true}
+        />
+      </div>
+    );
+  }
   // # function to initialise stipe session call ----> /api/reservation/new
   async function checkoutLink() {
+    // if (status === "unauthenticated") router.push("/register");
 
     const sendNewReservation = await axios.post("/api/reservation/new", {
       message,
@@ -62,7 +75,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       DateReserved: date,
       authorName: session?.user.name,
     });
-      await sleep(1000);
+
     if (sendNewReservation.status !== 200) {
       throw new Error("resevation failed");
     }
@@ -76,7 +89,8 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
       return;
     }
-    if (sendNewReservation.status === 200 && session?.user.id !== undefined) {
+    console.log(session?.user.id);
+    if (sendNewReservation.status === 200) {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
