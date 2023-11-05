@@ -33,7 +33,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
   useEffect(() => {}, [session]);
 
-  //  # function to get post Data from api call ----> /api/post/findById
 
   async function fetchData(): Promise<TPost | void> {
     try {
@@ -42,11 +41,12 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
           PostId: params.postPage,
         },
       });
-      setData([res.data?.user]);
+      setData([res.data.user]);
     } catch (error: any) {
       console.error(error);
     }
   }
+
   useEffect(() => {
     fetchData();
   }, [date]);
@@ -64,9 +64,11 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       </div>
     );
   }
+
+  console.log("outside function call ====",session?.user.id);
+
   async function checkoutLink() {
     // if (status === "unauthenticated") router.push("/register");
-
     const sendNewReservation = await axios.post("/api/reservation/new", {
       message,
       postId: params.postPage,
@@ -85,13 +87,12 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
         description: "choose another one to continue your booking 🪄",
         action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
       });
-
       return;
     }
 
-    console.log(session?.user.id);
+    console.log("inside function call ====",session?.user.id);
 
-    if (sendNewReservation.status === 200) {
+    if (sendNewReservation.status === 200 && session?.user.id) {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }

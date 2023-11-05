@@ -21,10 +21,8 @@ import { useEffect } from "react";
 const Header = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
-  
-  useEffect(() => {
+  useEffect(() => {}, [session]);
 
-  },[session])
   return (
     <div className=" justify-evenly flex md:justify-around items-center mb-10">
       <div className="flex items-center">
