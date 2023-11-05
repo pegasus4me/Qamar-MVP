@@ -46,8 +46,8 @@ const Create = ({ params }: { params: { id: string } }) => {
     resolver: zodResolver(postSchema),
   });
 
-  const PostSubmit: SubmitHandler<Omit<TPost, "userId"|  "profilePic">> = async (
-    data: TPost
+  const PostSubmit: SubmitHandler<Omit<TPost, "userId"| "profilePic">> = async (
+    data: Omit<TPost, "userId"| "profilePic">
   ) => {
     // error handling
     if (formValidation.formState.errors !== Object.keys({})) {

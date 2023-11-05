@@ -27,9 +27,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   const router = useRouter();
   const [data, setData] = useState<TPost[]>([]);
   const [message, setMessage] = useState<string | undefined>("");
-  const [price, setPrice] = useState<number | null>(null);
-  const [name, setName] = useState<string>("");
-  const [resid, setId] = useState("");
   const { data: session, status } = useSession();
   const { date } = useContext(ContextProvider);
 
