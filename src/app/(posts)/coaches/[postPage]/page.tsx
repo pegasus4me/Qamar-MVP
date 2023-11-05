@@ -69,8 +69,8 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
       return;
     }
-    if(sendNewReservation.status === 200) {
-      router.push(`/user/${session?.user.id}/coachings`)
+    if (sendNewReservation.status === 200) {
+      router.push(`/user/${session?.user.id}/coachings`);
     }
   }
 

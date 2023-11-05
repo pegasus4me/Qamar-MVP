@@ -14,6 +14,7 @@ const Posts = () => {
   const { data: session } = useSession();
 
   const router = useRouter();
+
   const a = async () => {
     const p = await findAllPosts();
     setDatas(p);
@@ -23,6 +24,7 @@ const Posts = () => {
     a();
   }, [session]);
 
+  console.log('ddd',datas)
   return (
     <div className="flex justify-evenly p-2 max-w-[1900px] m-auto gap-10 flex-wrap flex-col">
       <div className="">
@@ -31,7 +33,7 @@ const Posts = () => {
         {/* <Research /> */}
       </div>
 
-      <div className="">
+      <div>
         {datas.length !== 0 ? (
           datas.map((v: TPost, index: number) => {
             const {

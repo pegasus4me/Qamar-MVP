@@ -32,23 +32,22 @@ const postSchema = z.object({
   linkedin: z.string().optional(),
   whatsApp: z.string().optional(),
   twitter: z.string().optional(),
-  experienceField : z.string()
+  experienceField: z.string(),
 });
 export type Post = z.infer<typeof postSchema>;
 
 const Create = ({ params }: { params: { id: string } }) => {
   const { toast } = useToast();
   const router = useRouter();
-  const {data:session} = useSession()
+  const { data: session } = useSession();
   const [avalaibles, setAvaibilties] = useState<Date[]>([]);
   const [imgUrl, setImgUrl] = useState<string | undefined>("");
   const formValidation = useForm<Post>({
     resolver: zodResolver(postSchema),
   });
 
-  const PostSubmit: SubmitHandler<Omit<TPost, "userId"| "profilePic">> = async (
-    data: Omit<TPost, "userId"| "profilePic">
-  ) => {
+  const PostSubmit: SubmitHandler<Omit<TPost, "userId" | "profilePic">
+  > = async (data: Omit<TPost, "userId" | "profilePic">) => {
     // error handling
     if (formValidation.formState.errors !== Object.keys({})) {
       toast({
@@ -71,7 +70,7 @@ const Create = ({ params }: { params: { id: string } }) => {
       whatsApp,
       linkedin,
       price,
-      experienceField
+      experienceField,
     } = data;
 
     try {
@@ -90,7 +89,7 @@ const Create = ({ params }: { params: { id: string } }) => {
         linkedin,
         price,
         experienceField,
-        authorName: session?.user.name
+        authorName: session?.user.name,
       });
 
       if (res.status === 200) {
@@ -98,8 +97,8 @@ const Create = ({ params }: { params: { id: string } }) => {
           title: "succes! post created",
           description: "redirect...",
         });
-        
-        router.push(`/coaches/${res.data.createPost.id}`)
+
+        router.push(`/coaches/${res.data.createPost.id}`);
       } else {
         toast({
           title: "something goes wrong",
@@ -158,7 +157,7 @@ const Create = ({ params }: { params: { id: string } }) => {
             placeholder="ex:Deloitte"
             {...formValidation.register("currentCompany")}
           />
-          
+
           <Label>field of specialisation</Label>
           <Input
             placeholder="ex:Consultant"
