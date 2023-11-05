@@ -73,7 +73,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
-
+  console.log("dd",date)
   useEffect(() => {
     fetchData();
   }, [session, date]);
@@ -96,14 +96,13 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
               <div className="flex gap-4">
                 <div>
-                  {v?.profilePic && (
+                  {v.profilePic && (
                     <Image
                       src={String(v?.profilePic)}
                       alt="image user"
                       width={170}
                       height={170}
                       className="rounded-xs"
-                      placeholder="blur"
                     ></Image>
                   )}
                 </div>

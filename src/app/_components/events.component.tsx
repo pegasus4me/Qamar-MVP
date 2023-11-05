@@ -2,8 +2,8 @@ import { Treservation } from "@/types/reservation";
 import { BadgeCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Video } from "lucide-react";
 import { ArrowDownRight } from "lucide-react";
+export const dynamic = "force-dynamic"
 
 interface EventRes extends Treservation {
   price?: number;
