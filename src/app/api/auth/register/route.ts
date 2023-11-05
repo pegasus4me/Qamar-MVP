@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     if (checkIfUserExist) NextResponse.json({ msg: "user already registered with this email" })
 
     const Hash = await bcrypt.hash(password, 10)
-    
+
     let userRole;
 
     if (role === "student") {
@@ -34,10 +34,9 @@ export async function POST(req: Request) {
             }
         })
         return NextResponse.json({ create_user })
-        console.log("error",create_user)
 
     } catch (e: any) {
-        console.log("error",e)
+        console.log("error", e)
 
         return NextResponse.json({ error: e })
     }
