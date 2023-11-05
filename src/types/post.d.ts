@@ -15,7 +15,7 @@ export type TPost = {
     linkedin?: string | null | undefined
     whatsApp?: string | null | undefined
     twitter?: string | null | undefined
-    profilePic : string
+    profilePic? : string
     Title? : string
     author? : Author
     authorName?: string

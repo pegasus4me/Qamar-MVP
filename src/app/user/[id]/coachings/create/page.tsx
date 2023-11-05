@@ -46,8 +46,7 @@ const Create = ({ params }: { params: { id: string } }) => {
     resolver: zodResolver(postSchema),
   });
 
-  console.log("image", imgUrl);
-  const PostSubmit: SubmitHandler<Omit<TPost, "userId">> = async (
+  const PostSubmit: SubmitHandler<Omit<TPost, "userId"|  "profilePic">> = async (
     data: TPost
   ) => {
     // error handling

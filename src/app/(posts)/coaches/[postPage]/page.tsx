@@ -100,7 +100,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               <div className="flex gap-4">
                 <div>
                   <Image
-                    src={v.profilePic}
+                    src={v.profilePic as string}
                     alt="image user"
                     width={170}
                     height={170}
