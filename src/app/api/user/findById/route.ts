@@ -2,6 +2,7 @@ import prisma from "@/lib/db.server";
 import { NextResponse } from "next/server";
 import { parse, UrlWithParsedQuery } from 'url';
 import axios from "axios";
+export const dynamic = 'force-dynamic'
 
 export const GET = async (req: Request) => {
     const parseUrl: UrlWithParsedQuery = parse(req.url, true);
