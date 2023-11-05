@@ -29,9 +29,13 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   const [message, setMessage] = useState<string | undefined>("");
   const { data: session, status } = useSession();
   const { date } = useContext(ContextProvider);
-
   const { toast } = useToast();
+
+  useEffect(() => {}, [session]);
+  
   //  # function to get post Data from api call ----> /api/post/findById
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
   async function fetchData(): Promise<TPost | void> {
     try {
       const res = await axios.get("/api/post/findById", {
@@ -44,6 +48,10 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       console.error(error);
     }
   }
+  useEffect(() => {
+    fetchData();
+  }, [session, date]);
+
   // # function to initialise stipe session call ----> /api/reservation/new
   async function checkoutLink() {
     if (status === "unauthenticated") router.push("/register");
@@ -55,7 +63,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       DateReserved: date,
       authorName: session?.user.name,
     });
-
+      await sleep(1000);
     if (sendNewReservation.status !== 200) {
       throw new Error("resevation failed");
     }
@@ -74,11 +82,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  }, [session, date]);
-
-  useEffect(() => {}, [session]);
   return (
     <div className=" p-5 md:max-w-[1900px] m-auto max-w-[1600px]">
       <Link
