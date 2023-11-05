@@ -28,7 +28,7 @@ const postSchema = z.object({
     z
       .string()
       .transform(Number)
-      .refine((v) => v * 1.025)
+      .refine((number) => number * 100)
   ),
   yearsExperience: z.string(),
   imageUrl: z.any(),

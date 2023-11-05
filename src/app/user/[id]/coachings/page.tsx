@@ -12,13 +12,15 @@ import { ExtendPost } from "@/types/post";
 import CoachComponent from "@/app/_components/coachPosts.component";
 import { ExtendReservation } from "@/types/reservation";
 import getStripe from "@/lib/stripejs";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 
 const Coachings = ({ params }: { params: { id: string } }) => {
   const [reservationData, setReservationData] = useState([]);
   const [coachPosts, setCoachPost] = useState([]);
   const { data: session } = useSession();
-
+  const {toast} = useToast()
   const router = useRouter();
   async function findUser() {
     const reservations = await findReservation(params.id);
@@ -44,11 +46,15 @@ const Coachings = ({ params }: { params: { id: string } }) => {
         reservation_Id: findRes.data.reservations.id,
         postPageId: findRes.data.postId,
       });
+      
       let sessionId = createPayment.data.session.id;
       const stripeError = await stripe.redirectToCheckout({ sessionId });
 
       if (stripeError) {
-        console.error(stripeError);
+        toast({
+          title : "an error occured with stripe",
+          description : "retry in few minutes or contact us"
+        })
       }
     } catch (error: any) {
       console.log(error);
@@ -140,6 +146,8 @@ const Coachings = ({ params }: { params: { id: string } }) => {
           </article>
         ) : null}
       </div>
+
+      <Toaster/>
     </section>
   );
 };

@@ -11,49 +11,47 @@ export const POST = async (req: Request) => {
     const { price, postPageId, reservation_Id }
         : { price: number, postPageId: string, reservation_Id: string } = await req.json()
 
-        console.log("id icicici", reservation_Id)
+    try {
 
-        try {
-        if (reservation_Id !== undefined || reservation_Id !== "") {
 
-            const session = await stripe.checkout.sessions.create({
+        const session = await stripe.checkout.sessions.create({
 
-                payment_method_types: ["card"],
-                line_items: [
-                    {
-                        price_data: {
-                            currency: "usd",
-                            product_data: {
-                                name: `1 x mock case coaching session `,
-                            },
-                            unit_amount: price
+            payment_method_types: ["card"],
+            line_items: [
+                {
+                    price_data: {
+                        currency: "usd",
+                        product_data: {
+                            name: `1 x mock case coaching session`,
                         },
-                        quantity: 1,
+                        unit_amount: price
                     },
-                ],
-                mode: "payment",
-                payment_intent_data: {
-                    metadata: {
-                        "id": reservation_Id
-                    }
+                    quantity: 1,
                 },
-                success_url: `${headerList.get("origin")}/coaches/${postPageId}/succes`
-            })
+            ],
+            mode: "payment",
+            payment_intent_data: {
+                metadata: {
+                    "id": reservation_Id
+                }
+            },
+            success_url: `${headerList.get("origin")}/coaches/${postPageId}/succes`
+        })
 
-            if (!session.url) {
-                return NextResponse.json(
-                    {
-                        error: {
-                            code: "stripe-error",
-                            message: "Could not create checkout session",
-                        },
+        if (!session.url) {
+            return NextResponse.json(
+                {
+                    error: {
+                        code: "stripe-error",
+                        message: "Could not create checkout session",
                     },
-                    { status: 500 }
-                );
-            }
-
-            return NextResponse.json({ code: "created", session: session })
+                },
+                { status: 500 }
+            );
         }
+
+        return NextResponse.json({ code: "created", session: session })
+
 
 
 
