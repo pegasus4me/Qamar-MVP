@@ -1,5 +1,5 @@
 "use client";
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 import CardModal from "@/app/_components/card.component";
 import axios from "axios";
 import { TPost } from "@/types/post";
@@ -69,15 +69,16 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
       return;
     }
-    if (sendNewReservation.status === 200) {
+    if (sendNewReservation.status === 200 && session?.user.id !== undefined) {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
-  console.log("dd",date)
+
   useEffect(() => {
     fetchData();
   }, [session, date]);
 
+  useEffect(() => {}, [session]);
   return (
     <div className=" p-5 md:max-w-[1900px] m-auto max-w-[1600px]">
       <Link
