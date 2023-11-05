@@ -55,11 +55,11 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       authorName: session?.user.name,
     });
 
-    if (sendNewReservation.status !== 200) {
+    if (sendNewReservation?.status !== 200) {
       throw new Error("resevation failed");
     }
 
-    if (sendNewReservation.data.error === "date already reserved") {
+    if (sendNewReservation?.data?.error === "date already reserved") {
       toast({
         title: "Date non avalaible",
         description: "choose another one to continue your booking 🪄",
@@ -68,7 +68,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
       return;
     }
-    if (sendNewReservation.status === 200) {
+    if (sendNewReservation?.status === 200) {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
@@ -86,8 +86,8 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
         <ArrowLeft />
         view all coaches
       </Link>
-      {data.length !== 0 ? (
-        data.map((v: TPost, index: number) => (
+      {data?.length !== 0 ? (
+        data?.map((v: TPost, index: number) => (
           <div
             key={index}
             className="flex lg:justify-between lg:max-w-full lg:h-[1060px] lg:flex-row flex-col max-w-fit gap-5"
@@ -96,7 +96,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               <div className="flex gap-4">
                 <div>
                   {console.log(v.profilePic)}
-                  {v.profilePic && (
+                  {v?.profilePic && (
                     <Image
                       src={String(v?.profilePic)}
                       alt="image user"
@@ -110,37 +110,37 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   <h2 className="text-xl font-medium">{v.author?.name}</h2>
                   <h1 className="text-3xl font-semibold">{v.Title}</h1>
                   <Badge variant="outline" className="mt-4">
-                    {v.experienceField}
+                    {v?.experienceField}
                   </Badge>
                   <div className="min-h-[60px] p-2 mt-4 max-w-[500px] text-slate-600">
                     <p className="flex gap-3 text-slate-600">
                       {" "}
                       <FaHouse />
-                      {v.currentCompany}
+                      {v?.currentCompany}
                     </p>
-                    <p>{v.localisation}</p>
-                    <p>experience : {v.yearsExperience} years</p>
+                    <p>{v?.localisation}</p>
+                    <p>experience : {v?.yearsExperience} years</p>
                   </div>
                 </div>
               </div>
               <div className="mt-4 max-w-[1000px] p-4 text-slate-600">
-                {v.description}
+                {v?.description}
               </div>
               <div className="flex gap-5">
                 <Badge variant="outline" className="mt-4 cursor-pointer">
-                  <a href={v.linkedin as string}>Linkedin</a>
+                  <a href={v?.linkedin as string}>Linkedin</a>
                 </Badge>
                 <Badge variant="outline" className="mt-4 cursor-pointer">
-                  <a href={v.twitter as string}>Twitter</a>
+                  <a href={v?.twitter as string}>Twitter</a>
                 </Badge>
                 <Badge variant="outline" className="mt-4 cursor-pointer">
-                  <a href={v.whatsApp as string}>whatsApp</a>
+                  <a href={v?.whatsApp as string}>whatsApp</a>
                 </Badge>
               </div>
               <article className="mt-3 p-3">
                 <DateComponent
-                  dates={v.disponibilities}
-                  name={v.author?.name as string}
+                  dates={v?.disponibilities}
+                  name={v?.author?.name as string}
                 />
               </article>
 
@@ -196,9 +196,9 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
 
             <div>
               <CardModal
-                coachname={v.author?.name as string}
+                coachname={v?.author?.name as string}
                 book={() => checkoutLink()}
-                price={String(v.price)}
+                price={String(v?.price)}
               />
             </div>
           </div>
