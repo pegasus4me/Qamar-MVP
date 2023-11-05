@@ -22,7 +22,7 @@ const Posts = () => {
 
   useEffect(() => {
     a();
-  }, [session, datas]);
+  }, [session]);
 
   return (
     <div className="flex justify-evenly p-2 max-w-[1900px] m-auto gap-10 flex-wrap flex-col">

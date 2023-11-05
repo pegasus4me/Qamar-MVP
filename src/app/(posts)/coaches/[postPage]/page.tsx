@@ -95,7 +95,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
               <div className="flex gap-4">
                 <div>
-                  {console.log(v.profilePic)}
                   {v?.profilePic && (
                     <Image
                       src={String(v?.profilePic)}
@@ -103,6 +102,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                       width={170}
                       height={170}
                       className="rounded-xs"
+                      placeholder="blur"
                     ></Image>
                   )}
                 </div>
