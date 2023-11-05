@@ -7,6 +7,5 @@ export const GET = async (req: Request) => {
             author: true, // Return all fields
         }
     })
-    console.log("ee",findAllPosts)
     return NextResponse.json(findAllPosts)
 }

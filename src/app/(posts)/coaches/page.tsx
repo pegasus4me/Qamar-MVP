@@ -22,9 +22,8 @@ const Posts = () => {
 
   useEffect(() => {
     a();
-  }, [session]);
+  }, [session, datas]);
 
-  console.log('ddd',datas)
   return (
     <div className="flex justify-evenly p-2 max-w-[1900px] m-auto gap-10 flex-wrap flex-col">
       <div className="">
