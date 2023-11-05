@@ -11,6 +11,6 @@ export type Treservation = {
 }
 
 export interface ExtendReservation extends Treservation {
-    postReference : TPost[]
+    postReference : TPost
 }
 

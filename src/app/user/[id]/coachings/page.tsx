@@ -23,6 +23,7 @@ const Coachings = ({ params }: { params: { id: string } }) => {
   async function findUser() {
     const reservations = await findReservation(params.id);
     const coachPosts = await findCoachPosts(params.id);
+
     setCoachPost(coachPosts.statut);
     setReservationData(reservations.reservations);
   }
@@ -58,7 +59,6 @@ const Coachings = ({ params }: { params: { id: string } }) => {
   useEffect(() => {
     findUser();
   }, []);
-
   return (
     <section>
       <div className="p-4 flex flex-col gap-4 border border-dashed max-w-[1600px] m-auto mt-11 min-h-[400px] rounded-sm border-slate-300 sm:max-w-[80%]">
@@ -84,8 +84,8 @@ const Coachings = ({ params }: { params: { id: string } }) => {
                         message={r.message}
                         payed={r.payed}
                         DateReserved={new Date(r.DateReserved)}
-                        price={r.postReference[0].price}
-                        coach={r.postReference[0].authorName}
+                        price={r.postReference.price}
+                        coach={r.postReference.authorName}
                         redirect={() => payCoaching(r.id as string)}
                       />
                     );
