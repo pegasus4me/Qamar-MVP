@@ -68,7 +68,7 @@ const Posts = () => {
             <div className="flex justify-center items-center mt-36">
               <RotatingLines
                 strokeColor="purple"
-                strokeWidth="5"
+                strokeWidth="2"
                 animationDuration="0.75"
                 width="96"
                 visible={true}

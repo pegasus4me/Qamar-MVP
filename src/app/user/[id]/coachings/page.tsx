@@ -1,5 +1,5 @@
 "use client";
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 import { findReservation } from "@/lib/db.reservation";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
@@ -38,7 +38,7 @@ const Coachings = ({ params }: { params: { id: string } }) => {
       },
     });
 
-    console.log("ddtt", coachPosts)
+    console.log("ddtt", coachPosts);
     try {
       const createPayment = await axios.post("/api/checkout_sessions", {
         price: findRes.data.reservations.postReference.price,
@@ -71,12 +71,12 @@ const Coachings = ({ params }: { params: { id: string } }) => {
               <p className="text-xl font-medium text-neutral-800">
                 yours events sheduled
               </p>
-              <Badge variant="outline">{reservationData.length} events</Badge>
+              <Badge variant="outline">{reservationData?.length} events</Badge>
             </div>
 
             <>
-              {reservationData.length !== 0
-                ? reservationData.map((r: ExtendReservation, index: number) => {
+              {reservationData?.length !== 0
+                ? reservationData?.map((r: ExtendReservation, index: number) => {
                     return (
                       <EventsComponent
                         key={index}
@@ -90,7 +90,7 @@ const Coachings = ({ params }: { params: { id: string } }) => {
                       />
                     );
                   })
-                : null}
+                : <p>no coming events</p>}
             </>
           </article>
         ) : session?.user.Role === "COACH" ? (
@@ -109,37 +109,32 @@ const Coachings = ({ params }: { params: { id: string } }) => {
             </div>
 
             <div className="mt-4 p-3">
-              
               <p className="text-xl font-medium text-neutral-800">
                 the reservations booked for yours courses
               </p>
 
-              {coachPosts.map((res: Treservation, index:number) => {
+              {coachPosts.map((res: Treservation, index: number) => {
                 return (
-                  <Badge variant="outline"
-                  key={index}
-                  >
+                  <Badge variant="outline" key={index}>
                     {res.Reservation?.length} courses
                   </Badge>
                 );
               })}
-
             </div>
 
             <>
               {coachPosts.length !== 0
                 ? coachPosts.map((r: ExtendPost, index: number) => {
-                  console.log(r)
+                    console.log(r);
                     return (
                       <CoachComponent
                         key={index}
                         title={r.Title as string}
                         price={String(r.price)}
-                        Reservation={r.Reservation} 
-                        name={""}                      />
-    
+                        Reservation={r.Reservation}
+                        name={""}
+                      />
                     );
-                     
                   })
                 : null}
             </>
