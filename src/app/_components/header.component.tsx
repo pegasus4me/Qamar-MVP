@@ -24,7 +24,7 @@ const Header = () => {
   useEffect(() => {}, [session]);
 
   return (
-    <div className=" justify-evenly flex md:justify-around items-center mb-10">
+    <div className=" justify-evenly flex md:justify-around items-center mb-10 ">
       <div className="flex items-center">
         <Image src={Logo} alt="logo"></Image>
 
