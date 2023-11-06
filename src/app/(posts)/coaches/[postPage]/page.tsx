@@ -68,7 +68,17 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   console.log("outside function call ====",session?.user.id);
 
   async function checkoutLink() {
-    // if (status === "unauthenticated") router.push("/register");
+    
+    if (status === "unauthenticated") {
+      toast({
+        title: "not connected",
+        description: "connect yoursef or create an account to continue",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
+      return router.push("/register");  
+      
+    }
+
     const sendNewReservation = await axios.post("/api/reservation/new", {
       message,
       postId: params.postPage,
