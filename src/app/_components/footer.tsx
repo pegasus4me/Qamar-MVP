@@ -6,7 +6,7 @@ import Link from "next/link"
 const Footer = () => {
 
     return <footer className="bg-neutral-100 min-h-[200px] mt-7 max-w-[70%] m-auto mb-5 rounded-md p-3">
-        <div className="border flex justify-around items-center">
+        <div className="flex justify-around items-center">
             <div>
                 <Image src={logo} alt="logo"></Image>
             </div>
