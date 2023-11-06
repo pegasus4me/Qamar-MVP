@@ -6,6 +6,7 @@ import "./globals.css";
 import { headers } from 'next/headers'
 import Provider from "@/lib/sessionProvider";
 import Strip from "./_components/strip";
+import Footer from "./_components/footer";
 const inter = Inter({ subsets: ["latin"] });
 import { Session } from 'next-auth'
 
@@ -39,7 +40,7 @@ export default async function RootLayout({
           <Header/>
           <Strip/>
           {children}
-          {/* footer */}
+          <Footer/>
         </Provider>
       </body>
     </html>
