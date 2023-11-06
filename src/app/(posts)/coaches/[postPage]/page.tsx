@@ -28,11 +28,13 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   const [data, setData] = useState<TPost[]>([]);
   const [message, setMessage] = useState<string | undefined>("");
   const { data: session, status } = useSession();
+  const [sessionId, setSessionId] = useState<string | undefined>("");
   const { date } = useContext(ContextProvider);
   const { toast } = useToast();
 
-  useEffect(() => {}, [session]);
-
+  useEffect(() => {
+    setSessionId(session?.user.id);
+  }, [session]);
 
   async function fetchData(): Promise<TPost | void> {
     try {
@@ -65,24 +67,22 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
     );
   }
 
-  console.log("outside function call ====",session?.user.id);
+  console.log("outside function call ====", sessionId);
 
   async function checkoutLink() {
-    
     if (status === "unauthenticated") {
       toast({
         title: "not connected",
         description: "connect yoursef or create an account to continue",
         action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
       });
-      return router.push("/register");  
-      
+      return router.push("/register");
     }
 
     const sendNewReservation = await axios.post("/api/reservation/new", {
       message,
       postId: params.postPage,
-      authorId: session?.user.id,
+      authorId: sessionId,
       DateReserved: date,
       authorName: session?.user.name,
     });
@@ -100,7 +100,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       return;
     }
 
-    console.log("inside function call ====",session?.user.id);
+    console.log("inside function call ====", session?.user.id);
 
     if (sendNewReservation.status === 200 && session?.user.id) {
       router.push(`/user/${session?.user.id}/coachings`);
