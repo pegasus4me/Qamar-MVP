@@ -1,5 +1,4 @@
 "use client";
-export const dynamic = "force-dynamic";
 import CardModal from "@/app/_components/card.component";
 import axios from "axios";
 import { TPost } from "@/types/post";
@@ -68,6 +67,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   }
 
   console.log("outside function call ====", sessionId);
+
 
   async function checkoutLink() {
     if (status === "unauthenticated") {
