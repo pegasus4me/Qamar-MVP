@@ -22,7 +22,7 @@ export default function Home() {
       </section>
       <div className="flex justify-center gap-3 w-fit m-auto p-3 mt-6">
           <div className="">
-            <Button className='bg-[#230E49]'><Link href="/coaches">go to app</Link></Button>
+            <Button className='bg-[#230E49]'><Link href="/coaches">browse coaches</Link></Button>
           </div>
         </div>
 

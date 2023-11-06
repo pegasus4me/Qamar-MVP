@@ -74,7 +74,7 @@ const PostComponent = ({
       </CardHeader>
       <CardContent className="p-1 flex justify-between ">
         <CardDescription className=" max-w-[900px]">
-          {description}
+          {description.slice(0,400)} <span className="opacity-60">learn more...</span>
         </CardDescription>
         
         <div>

@@ -58,11 +58,11 @@ const Header = () => {
               <DropdownMenuContent>
                 <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                {/* <DropdownMenuItem>
                   <Link href={`/user/${session?.user.id}/profile`}>
                     Profile
                   </Link>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 <DropdownMenuItem>
                   <Link href={`/user/${session?.user.id}/coachings`}>coachings</Link>
                 </DropdownMenuItem>

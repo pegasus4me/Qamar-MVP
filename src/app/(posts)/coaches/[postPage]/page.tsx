@@ -65,10 +65,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       </div>
     );
   }
-
-  console.log("outside function call ====", sessionId);
-
-
   async function checkoutLink() {
     if (status === "unauthenticated") {
       toast({
@@ -185,7 +181,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                 />
               </div>
 
-              <div className="flex gap-5 mt-5">
+              <div className="flex gap-5 mt-5 justify-center">
                 <p className="text-sm text-[#230E49] flex items-center gap-4">
                   <Globe />
                   60-min 1:1 session
@@ -204,17 +200,17 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   how booking a coach works?
                   <ShieldQuestion />
                 </p>
-                <div className="font-medium mt-4 opacity-50">
-                  <p>
+                <div className="font-medium mt-6 text-[#475569]">
+                  <p className="mb-2">
                     1 - schedule your preferred date to perform your interview
                     remember each interview has a duration of 60 min
                   </p>
-                  <p>
+                  <p className="mb-2">
                     2 - add a message if you have something more to say to your
                     coach
                   </p>
-                  <p>3 - confirm your booking</p>
-                  <p>
+                  <p className="mb-2">3 - confirm your booking</p>
+                  <p className="mb-2">
                     4 - go to your coaching section and pay for the session.
                     Your money is locked until you validate through an email
                     that all goes well with your interviewer

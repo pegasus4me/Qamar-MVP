@@ -50,7 +50,7 @@ const DateComponent = ({ dates, name }: { dates: Date[] | undefined, name :strin
           name="date"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-medium text-lg mt-5">chose your interview Date</FormLabel>
+              <FormLabel className="text-medium text-lg mt-5"> 1 - chose your interview Date *</FormLabel>
               <Select onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>

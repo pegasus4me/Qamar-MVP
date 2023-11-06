@@ -28,7 +28,6 @@ const postSchema = z.object({
     z
       .string()
       .transform(Number)
-      .refine((number) => number * 100)
   ),
   yearsExperience: z.string(),
   imageUrl: z.any(),
@@ -48,6 +47,7 @@ const Create = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
   const [avalaibles, setAvaibilties] = useState<Date[]>([]);
   const [imgUrl, setImgUrl] = useState<string | undefined>("");
+  
   const formValidation = useForm<Post>({
     resolver: zodResolver(postSchema),
   });
@@ -55,7 +55,7 @@ const Create = ({ params }: { params: { id: string } }) => {
   const PostSubmit: SubmitHandler<
     Omit<TPost, "userId" | "profilePic">
   > = async (data: Omit<TPost, "userId" | "profilePic">) => {
-    console.log(data);
+    
     // error handling
 
     if (Object.keys(formValidation.formState.errors).length !== 0) {
@@ -66,7 +66,7 @@ const Create = ({ params }: { params: { id: string } }) => {
 
     data.disponibilities = avalaibles;
     data.imageUrl = imgUrl;
-
+    console.log(data);
     const {
       imageUrl,
       description,
@@ -125,7 +125,7 @@ const Create = ({ params }: { params: { id: string } }) => {
         className=" p-4 flex flex-col gap-4 border border-dashed max-w-[1600px] m-auto mt-11 min-h-[400px] rounded-sm border-slate-300 sm:max-w-[80%]"
         onSubmit={formValidation.handleSubmit(PostSubmit)}
       >
-        <Label>Upload your Image</Label>
+        <Label>1 - Upload your Image</Label>
         <UploadDropzone<OurFileRouter>
           className="ut-button:bg-[#230E49] ut-label:text-md"
           endpoint="image"
@@ -133,6 +133,7 @@ const Create = ({ params }: { params: { id: string } }) => {
             setImgUrl(res?.[0].url);
             toast({
               title: "image uploaded",
+              description : "image succesfully uploaded you can continue!"
             });
           }}
           onUploadError={(error: Error) => {

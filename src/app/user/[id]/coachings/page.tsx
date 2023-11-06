@@ -42,7 +42,7 @@ const Coachings = ({ params }: { params: { id: string } }) => {
     
     try {
       const createPayment = await axios.post("/api/checkout_sessions", {
-        price: findRes.data.reservations.postReference.price,
+        price: findRes.data.reservations.postReference.price * 100,
         reservation_Id: findRes.data.reservations.id,
         postPageId: findRes.data.postId,
       });
