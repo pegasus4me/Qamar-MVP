@@ -2,10 +2,9 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/lib/db.server";
 import { compare } from "bcrypt";
-
+export const dynamic = 'force-dynamic'
 
 const handler = NextAuth({
-
     providers: [
         CredentialsProvider({
 
