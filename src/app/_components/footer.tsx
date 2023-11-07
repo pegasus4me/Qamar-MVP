@@ -5,7 +5,7 @@ import { FaLinkedin } from "react-icons/fa6"
 import Link from "next/link"
 const Footer = () => {
 
-    return <footer className="bg-neutral-100 min-h-[200px] mt-7 max-w-[70%] m-auto mb-5 rounded-md p-3">
+    return <footer className="bg-neutral-100 mt-7 max-w-[70%] m-auto mb-5 rounded-md p-3  flex-col border">
         <div className="flex justify-around items-center">
             <div>
                 <Image src={logo} alt="logo"></Image>
@@ -18,7 +18,7 @@ const Footer = () => {
             </div>
         </div>
         <div className="flex gap-2 text-end mt-2 p-2">
-            <a href="https://twitter.com/QamarStudio_"><FaLinkedin className="text-xl"/></a>
+            <a href="https://www.linkedin.com/company/qamar-studio/about/"><FaLinkedin className="text-xl"/></a>
             <a href="https://twitter.com/QamarStudio_"><Twitter/></a>
         </div>
     </footer>
