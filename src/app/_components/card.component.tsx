@@ -24,11 +24,11 @@ const CardModal = ({
         <CardTitle className="mb-5">Book a Session</CardTitle>
         <CardDescription className="flex gap-2">
           <Check />
-          money is hold until you validate is all good
+          The money will be held until you confirm that everything is good
         </CardDescription>
         <CardDescription className="flex gap-2">
           <Check />
-          refound offered if you are not satisfied 
+          refund offered if you are not satisfied  
         </CardDescription>
         <CardDescription className="flex gap-2">
           <Check />

@@ -197,7 +197,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               </div>
               <div className="mt-5">
                 <p className="flex gap-1 text-[#230E49] font-medium">
-                  how booking a coach works?
+                how does booking a coach work?
                   <ShieldQuestion />
                 </p>
                 <div className="font-medium mt-6 text-[#475569]">

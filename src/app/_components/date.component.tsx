@@ -75,7 +75,7 @@ const DateComponent = ({ dates, name }: { dates: Date[] | undefined, name :strin
                 </SelectContent>
               </Select>
               <FormDescription>
-                interviews with {name} will be peformed on Zoom
+                interviews with {name} will be performed on Zoom 
               </FormDescription>
             </FormItem>
           )}
