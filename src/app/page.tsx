@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import desc from "../../public/assets/desc.svg"
 export default function Home() {
   return (
     <main className="max-w-[70%] m-auto">
@@ -15,7 +16,7 @@ export default function Home() {
         </div>
         <div className="flex justify-center mt-6 text-center lg:text-xl md:text-md max-w-[800px] m-auto text-md">
           <p className="opacity-60 font-medium">
-            Maximize your case study interviews by 250% in half the time with
+            Maximize your case study interviews succes rate the time with
             customized, personal 1:1 mock interviews with experts in your field.
           </p>
         </div>
@@ -58,20 +59,10 @@ export default function Home() {
             MBA students, both undergraduate and graduate, with industry experts
             and coaches our primary objective is to :{" "}
           </p>
-          <ul className=" m-5 p-4 flex flex-col text-start gap-3 opacity-70">
-            <li>
-              1 - bridge the gap between academic learning and real-world job
-              case study interviews 🌉
-            </li>
-            <li>
-              2 - provide an environment where you can engage in mock interviews
-              with industry professionals 🗣️
-            </li>
-            <li>4 - get post-interview precious feedback 💎</li>
-            <li>5 - gaining practical experience and insights 🧠</li>
-            <li>6 - track your progession 📈</li>
-            <li>and much more... 🪄</li>
-          </ul>
+          <div className='flex justify-center mt-10 mb-10 border p-5 rounded-lg border-dashed border-neutral-300 bg-slate-50'>
+          <Image src={desc} alt='img'></Image>
+          </div>
+           
           <p className="font-medium text-center text-lg opacity-60 ">
             {" "}
             This approach supercharges the power of practice, making the
