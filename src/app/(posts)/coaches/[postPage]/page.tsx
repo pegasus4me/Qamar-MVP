@@ -212,7 +212,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   <p className="mb-2">3 - confirm your booking</p>
                   <p className="mb-2">
                     4 - go to your coaching section and pay for the session.
-                    Your money is locked until you validate through an email
+                    Your money is held  until you validate through an email
                     that all goes well with your interviewer
                   </p>
                 </div>
