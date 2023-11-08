@@ -119,10 +119,14 @@ const Coachings = ({ params }: { params: { id: string } }) => {
               </p>
 
               {coachPosts.map((res: Treservation, index: number) => {
+                
                 return (
+                  <>
                   <Badge variant="outline" key={index}>
                     {res.Reservation?.length} courses
                   </Badge>
+                  </>
+                  
                 );
               })}
             </div>

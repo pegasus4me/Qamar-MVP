@@ -33,6 +33,7 @@ const Posts = () => {
       </div>
 
       <div>
+        <p className="font-medium mb-4 text-neutral-900 p-2 ">coaches avalaibles: <span className="text-neutral-500">{datas.length}</span></p>
         {datas.length !== 0 ? (
           datas.map((v: TPost, index: number) => {
             const {

@@ -26,6 +26,7 @@ const CoachComponent = ({
           <h2 className="font-medium flex gap-2 ">
             1 x mock case interview with {title}
             <BadgeCheck />
+            
           </h2>
         </div>
 
@@ -42,6 +43,7 @@ const CoachComponent = ({
                   date:{" "}
                   <span className="font-semibold text-neutral-600">
                     booked for : {new Date(one.DateReserved).toString()}
+                    <Badge className="ml-3">{`${new Date() > one.DateReserved ? "event passed" : "event coming"}`}</Badge>
                   </span>
                 </p>
 

@@ -40,6 +40,7 @@ const EventsComponent = ({
         <p className="font-medium mt-1">
           date:{" "}
           <span className="font-semibold text-neutral-600">{DateReserved.toString()}</span>
+          <Badge className="ml-3">{`${new Date() > DateReserved ? "event passed" : "event coming"}`}</Badge>
         </p>
         <p className="text-sm font-semibold text-neutral-400">
           {" "}
