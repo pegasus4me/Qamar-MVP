@@ -20,7 +20,9 @@ const CoachComponent = ({
 }) => {
   const router = useRouter();
   return (
+    <>
     <div className="max-w-[70%] border mt-7 min-h-[40px] border-dashed rounded-sm border-neutral-200 p-3 flex items-end justify-between">
+      
       <div>
         <div className="flex items-center gap-3">
           <h2 className="font-medium flex gap-2 ">
@@ -43,7 +45,7 @@ const CoachComponent = ({
                   date:{" "}
                   <span className="font-semibold text-neutral-600">
                     booked for : {new Date(one.DateReserved).toString()}
-                    <Badge className="ml-3">{`${new Date() > one.DateReserved ? "event passed" : "event coming"}`}</Badge>
+                    {/* <Badge className="ml-3">{`${new Date() > one.DateReserved ? "event passed" : "event coming"}`}</Badge> */}
                   </span>
                 </p>
 
@@ -72,6 +74,7 @@ const CoachComponent = ({
           : null}
       </div>
     </div>
+    </>
   );
 };
 
