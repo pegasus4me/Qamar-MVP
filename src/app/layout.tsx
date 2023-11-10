@@ -9,6 +9,7 @@ import Strip from "./_components/strip";
 import Footer from "./_components/footer";
 const inter = Inter({ subsets: ["latin"] });
 import { Session } from 'next-auth'
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: "Qamar",
@@ -40,6 +41,7 @@ export default async function RootLayout({
           <Header/>
           <Strip/>
           {children}
+          <Analytics />
           <Footer/>
         </Provider>
       </body>
