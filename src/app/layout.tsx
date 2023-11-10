@@ -41,9 +41,9 @@ export default async function RootLayout({
           <Header/>
           <Strip/>
           {children}
-          <Analytics />
           <Footer/>
         </Provider>
+        <Analytics />
       </body>
     </html>
   );
