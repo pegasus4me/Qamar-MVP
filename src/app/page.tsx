@@ -1,33 +1,33 @@
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import desc from "../../public/assets/desc.svg"
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import desc from "../../public/assets/desc.svg";
 export default function Home() {
   return (
-    <main className="max-w-[70%] m-auto">
-    <section className="lg:mt-32 mt-11" id="hero">
-        <div className="text-5xl sm:text-5xl md:text-6xl flex justify-center mt-6 lg:text-8xl font-semibold text-center max-w-[800px] m-auto md:max-w-[1000px] ">
+    <main className="max-w-[90%] m-auto">
+      <section className="lg:mt-32 mt-11" id="hero">
+        <div className="text-2xl sm:text-2xl md:text-3xl flex justify-center mt-5 lg:text-6xl font-semibold text-center max-w-[100%] m-auto md:max-w-[90%]">
+          
           <h1 className="text-slate-800">
-            Case study interview{" "}
-            <span className="bg-gradient-to-r from-indigo-500 to-[#230E49] bg-clip-text text-transparent">
-              made Easy
-            </span>
+            Anonymous mock case interviews with consultants from
+            Mckenzie Deloitte, BCG, PWC and other top firms
           </h1>
         </div>
-        <div className="flex justify-center mt-6 text-center lg:text-xl md:text-md max-w-[800px] m-auto text-md">
+        <div className="flex justify-center mt-4 text-center lg:text-xl md:text-md max-w-[800px] m-auto text-md">
           <p className="opacity-60 font-medium">
-            Maximize your case study interviews succes rate the time with
-            customized, personal 1:1 mock interviews with experts in your field.
+          Maximize your case study interviews succes rate the time with customized, personal 1:1 mock interviews with experts in your field.
           </p>
         </div>
       </section>
       <div className="flex justify-center gap-3 w-fit m-auto p-3 mt-6">
-          <div className="">
-            <Button className='bg-[#230E49]'><Link href="/coaches">browse coaches</Link></Button>
-          </div>
+        <div className="">
+          <Button className="bg-[#230E49]">
+            <Link href="/coaches">browse coaches</Link>
+          </Button>
         </div>
+      </div>
 
-        <section className="lg:mt-10 mt-5">
+      <section className="lg:mt-10 mt-5">
         <div className=" rounded-md h-fit lg:max-w-[1300px] m-auto p-4 ">
           <h2 className="text-slate-800 text-center mt-1 p-2 text-4xl font-bold">
             The current{" "}
@@ -59,10 +59,10 @@ export default function Home() {
             MBA students, both undergraduate and graduate, with industry experts
             and coaches our primary objective is to :{" "}
           </p>
-          <div className='flex justify-center mt-10 mb-10 border p-5 rounded-lg border-dashed border-neutral-300 bg-slate-50'>
-          <Image src={desc} alt='img'></Image>
+          <div className="flex justify-center mt-10 mb-10 border p-5 rounded-lg border-dashed border-neutral-300 bg-slate-50">
+            <Image src={desc} alt="img"></Image>
           </div>
-           
+
           <p className="font-medium text-center text-lg opacity-60 ">
             {" "}
             This approach supercharges the power of practice, making the
@@ -72,5 +72,5 @@ export default function Home() {
         </article>
       </section>
     </main>
-  )
+  );
 }
