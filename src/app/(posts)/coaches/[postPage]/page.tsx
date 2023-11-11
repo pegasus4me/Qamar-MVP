@@ -187,7 +187,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                 />
               </div>
 
-              <div className="flex gap-5 mt-5 justify-center">
+              <div className="flex gap-5 mt-5">
                 <p className="text-sm text-[#230E49] flex items-center gap-4">
                   <Globe />
                   60-min 1:1 session

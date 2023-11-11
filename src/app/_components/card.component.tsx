@@ -38,7 +38,7 @@ const CardModal = ({
 
       <CardContent className="flex justify-center">
         <Button className="max-w-full items-center bg-[#230E49]" onClick={book}>
-          Book mock case with {coachname} for ${price}
+          Book mock case with @qs-{coachname} for ${price}
         </Button>
       </CardContent>
     </Card>
