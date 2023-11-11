@@ -38,9 +38,8 @@ const PostComponent = ({
   price,
   company,
 }: PostComponent) => {
-  console.log(sessionFormat === "audio call only")
   return (
-    <Card className="max-w-[1300px] border  mb-5 p-4 m-auto">
+    <Card className="max-w-[1300px] border  mb-5 p-3 m-auto ">
       <CardHeader className="flex flex-row gap-4 items-center">
         <div className="flex flex-col gap-3">
           <div className="flex gap-4 items-center p-1">
