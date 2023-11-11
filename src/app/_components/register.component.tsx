@@ -91,7 +91,7 @@ const Register: FC = () => {
       
       <div className="flex flex-col gap-4 p-3">
         <Input
-        placeholder="username"
+        placeholder="pseudonym"
         type="text"
         {...form.register("name")}
         />
