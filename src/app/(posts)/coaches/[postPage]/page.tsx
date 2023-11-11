@@ -187,7 +187,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                 />
               </div>
 
-              <div className="flex gap-5 mt-5">
+              <div className="flex gap-5 mt-5 p-3">
                 <p className="text-sm text-[#230E49] flex items-center gap-4">
                   <Globe />
                   60-min 1:1 session
@@ -201,12 +201,12 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   sessions hosted on Zoom
                 </p>
               </div>
-              <div className="mt-5">
+              <div className="mt-5 p-3">
                 <p className="flex gap-1 text-[#230E49] font-medium">
                   how does booking a coach work?
                   <ShieldQuestion />
                 </p>
-                <div className="font-medium mt-6 text-[#475569]">
+                <div className="font-medium mt-6 text-[#475569] p-3">
                   <p className="mb-2">
                     1 - schedule your preferred date to perform your interview
                     remember each interview has a duration of 60 min
