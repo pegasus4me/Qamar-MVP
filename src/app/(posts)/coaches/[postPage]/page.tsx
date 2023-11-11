@@ -96,9 +96,13 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       return;
     }
 
-    console.log("inside function call ====", session?.user.id);
 
     if (sendNewReservation.status === 200 && session?.user.id) {
+      toast({
+        title: "Successfully pre-booked!",
+        description: "redirect to your coaching dashboard 🪄",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
