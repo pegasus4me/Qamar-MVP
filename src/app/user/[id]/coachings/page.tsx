@@ -22,14 +22,17 @@ const Coachings = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
   const { toast } = useToast();
   const router = useRouter();
+  let totalRes = 0;
+
   async function findUser() {
     const reservations = await findReservation(params.id);
     const coachPosts = await findCoachPosts(params.id);
-
+    console.log("dd", reservations);
     setCoachPost(coachPosts.statut);
     setReservationData(reservations.reservations);
   }
 
+  console.log("ddod", reservationData);
   async function payCoaching(id: string) {
     const stripe = await getStripe();
     if (!stripe) throw new Error("Stripe failed to initialize.");
@@ -60,7 +63,6 @@ const Coachings = ({ params }: { params: { id: string } }) => {
       console.log(error);
     }
   }
-
   useEffect(() => {
     findUser();
   }, []);
@@ -79,7 +81,7 @@ const Coachings = ({ params }: { params: { id: string } }) => {
               <Badge variant="outline">{reservationData?.length} events</Badge>
             </div>
 
-            <>
+            <div>
               {reservationData?.length !== 0 ? (
                 reservationData?.map((r: ExtendReservation, index: number) => {
                   return (
@@ -92,13 +94,14 @@ const Coachings = ({ params }: { params: { id: string } }) => {
                       price={r.postReference.price}
                       coach={r.postReference.authorName}
                       redirect={() => payCoaching(r.id as string)}
+                      title={r.postReference.Title as string}
                     />
                   );
                 })
               ) : (
                 <p>no coming events</p>
               )}
-            </>
+            </div>
           </article>
         ) : session?.user.Role === "COACH" ? (
           <article>
@@ -119,37 +122,40 @@ const Coachings = ({ params }: { params: { id: string } }) => {
               <p className="text-xl font-medium text-neutral-800">
                 the reservations booked for yours courses
               </p>
-
               {coachPosts.map((res: Treservation, index: number) => {
+                if (res.Reservation?.length !== undefined) {
+                  while (totalRes < res.Reservation?.length) {
+                    totalRes++;
+                  }
+                }
                 return (
-                  <>
-                    <Badge variant="outline" key={index}>
-                      {res.Reservation?.length} courses
-                    </Badge>
-                  </>
-                );
+                  <></>
+                )
               })}
+              
+              <Badge>{totalRes} resevations</Badge>
             </div>
 
-            <>
+            <div>
               {coachPosts.length !== 0
                 ? coachPosts.map((r: ExtendPost, index: number) => {
+                    console.log(r.Reservation);
                     return (
                       <CoachComponent
                         key={index}
                         title={r.Title as string}
                         price={String(r.price)}
                         Reservation={r.Reservation}
-                        name={""}
+                        // name={r.anotherReservation}
                       />
                     );
                   })
                 : null}
-            </>
+            </div>
             <div className="mt-5">
               <p className="font-medium text-natural-500 flex items-center gap-2">
                 frequently asked question
-                <PiWarningCircle/>
+                <PiWarningCircle />
               </p>
               <div className="max-w-[50%] p-2 border rounded-md border-dotted mt-5 opacity-60">
                 <h3 className="font-medium text-md">
@@ -180,12 +186,14 @@ const Coachings = ({ params }: { params: { id: string } }) => {
                 <p className="mt-3 text-sm text-natural-800">
                   2-5 hours after the interview
                 </p>
-                
-                  <a href="mailto:contact@qamarstudio.com"
+
+                <a
+                  href="mailto:contact@qamarstudio.com"
                   className="font-medium text-md mt-5"
-                  >if you have any other question please <span className="underline text-natural-200">contact us</span></a>
-                 
-                
+                >
+                  if you have any other question please{" "}
+                  <span className="underline text-natural-200">contact us</span>
+                </a>
               </div>
             </div>
           </article>

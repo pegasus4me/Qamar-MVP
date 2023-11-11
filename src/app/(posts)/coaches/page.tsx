@@ -19,7 +19,6 @@ const Posts = () => {
     const p = await findAllPosts();
     setDatas(p);
   };
-
   useEffect(() => {
     a();
   }, [session]);

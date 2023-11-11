@@ -11,12 +11,12 @@ const CoachComponent = ({
   title,
   price,
   Reservation,
-  name,
+  // name,
 }: {
   title: string;
   price: string;
   Reservation: Treservation[] | undefined;
-  name : string
+  // name : Treservation
 }) => {
   const router = useRouter();
   return (

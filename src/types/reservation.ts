@@ -7,6 +7,7 @@ export type Treservation = {
     authorId? : string
     postId? : string
     Reservation? : []
+    authorName? : string
     
 }
 

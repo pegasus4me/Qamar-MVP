@@ -24,6 +24,7 @@ export type TPost = {
 
 export interface ExtendPost extends TPost {
     Reservation : Treservation[]
+    anotherReservation : Treservation
 }
 
 type Author = {

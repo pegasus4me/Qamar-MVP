@@ -9,6 +9,7 @@ interface EventRes extends Treservation {
   price?: number;
   coach?: string;
   redirect? : React.MouseEventHandler<HTMLButtonElement>
+  title : string
   seeMore: () => void;
 }
 
@@ -19,14 +20,15 @@ const EventsComponent = ({
   price,
   coach,
   seeMore,
-  redirect
+  redirect,
+  title, 
 }: EventRes) => {
   return (
     <div className="max-w-[70%] border mt-7 min-h-[40px] border-dashed rounded-sm border-neutral-200 p-3 flex items-end justify-between">
       <div>
         <div className="flex items-center gap-3">
           <h2 className="font-medium flex gap-2 ">
-             1 x mock case interview with {coach}<BadgeCheck />
+             1 x {title} with @qs-{coach}<BadgeCheck />
           </h2>
           <Badge variant="outline">payed : {String(payed)}</Badge>
           {!payed ? (
@@ -59,7 +61,7 @@ const EventsComponent = ({
       </div>
 
       <div>
-        <Button className="bg-[#230E49] text-sm" onClick={() => seeMore}>
+        <Button className="bg-[#230E49] text-sm" onClick={seeMore}>
           see more <ArrowDownRight />
         </Button>
       </div>

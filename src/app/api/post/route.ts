@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/db.server";
 import { TPost } from "@/types/post";
+import { getServerSession } from "next-auth";
 
 export const POST = async (req: Request) => {
 
+    // authorName
     const {
         // imageUrl,
         sessionFormat,
@@ -19,13 +21,13 @@ export const POST = async (req: Request) => {
         twitter,
         disponibilities,
         experienceField,
-        author
+        authorName
 
     }: TPost = await req.json()
 
     const checkDuplicate = await prisma.post.findFirst({
         where: {
-            Title: title 
+            Title: title
         }
     })
 
@@ -49,7 +51,7 @@ export const POST = async (req: Request) => {
                 whatsApp,
                 linkedin,
                 price,
-                authorName: author?.name,
+                authorName: authorName,
 
                 author: {
                     connect: {
@@ -63,6 +65,7 @@ export const POST = async (req: Request) => {
             }
 
         })
+        console.log("==================================",createPost)
         return NextResponse.json({ msg: "post created", createPost })
     } catch (e: any) {
         console.log(e)

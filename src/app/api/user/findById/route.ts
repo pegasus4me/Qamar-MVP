@@ -19,6 +19,7 @@ export const GET = async (req: Request) => {
                 Reservations: {
                     include: {
                         postReference: true,
+                        reservedBy : true
                     },
                 },
             }

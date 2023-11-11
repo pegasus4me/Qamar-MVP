@@ -11,7 +11,7 @@ import { AiFillLinkedin } from "react-icons/ai";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { DateTimePicker } from "@/app/_components/dateTime.component";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import z from "zod";
@@ -46,11 +46,16 @@ const postSchema = z.object({
 export type Post = z.infer<typeof postSchema>;
 
 const Create = ({ params }: { params: { id: string } }) => {
+
+  
   const { toast } = useToast();
   const router = useRouter();
   const { data: session } = useSession();
   const [avalaibles, setAvaibilties] = useState<Date[]>([]);
   const [imgUrl, setImgUrl] = useState<string | undefined>("");
+
+  useEffect(() => {},[session])
+
 
   const formValidation = useForm<Post>({
     resolver: zodResolver(postSchema),

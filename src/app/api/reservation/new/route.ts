@@ -9,7 +9,8 @@ export const POST = async (req: Request) => {
         message,
         DateReserved,
         authorId,
-        postId
+        postId,
+        authorName
     }: Treservation = await req.json()
 
     // verification de la date de reservation si elle existe on throw
@@ -28,7 +29,7 @@ export const POST = async (req: Request) => {
             data: {
                 message,
                 DateReserved,
-    
+                authorName,
                 reservedBy: {
                     connect: {
                         id: authorId as string
