@@ -14,6 +14,7 @@ import { Analytics } from '@vercel/analytics/react';
 export const metadata: Metadata = {
   title: "Qamar",
   description: "Qamar studio",
+  
 };
 
 async function getSession(cookie: string): Promise<Session> {
