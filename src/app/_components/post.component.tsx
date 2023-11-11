@@ -1,7 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { FaHouse } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { GoLocation } from "react-icons/go";
+
 import { ArrowDownRightIcon } from "lucide-react";
 import {
   Card,
@@ -13,7 +14,6 @@ import {
 } from "@/components/ui/card";
 
 type PostComponent = {
-  imageurl: string | undefined | null;
   name: string | undefined;
   experienceFiled: string;
   learnMore: () => void;
@@ -23,12 +23,13 @@ type PostComponent = {
   localisation: string;
   price: string;
   company: string;
+  sessionFormat: string;
 };
 
 const PostComponent = ({
-  imageurl,
   name,
   experienceFiled,
+  sessionFormat,
   learnMore,
   postTitle,
   description,
@@ -37,21 +38,17 @@ const PostComponent = ({
   price,
   company,
 }: PostComponent) => {
+  console.log(sessionFormat === "audio call only")
   return (
-    <Card className="min-w-full mb-5 p-4">
+    <Card className="max-w-[1300px] border  mb-5 p-4 m-auto">
       <CardHeader className="flex flex-row gap-4 items-center">
-        <Image
-          src={String(imageurl)}
-          alt="image user"
-          width={170}
-          height={170}
-          className="rounded-xs"
-        ></Image>
-
         <div className="flex flex-col gap-3">
-          <div className="flex gap-4 items-center">
-            <CardTitle className="">{name}</CardTitle>
+          <div className="flex gap-4 items-center p-1">
+            <CardTitle className="text-md opacity-40">@qs-{name}</CardTitle>
             <Badge variant="outline">{experienceFiled}</Badge>
+          </div>
+          <div>
+          <Badge variant="destructive">{sessionFormat}</Badge>
           </div>
 
           <CardTitle className="">{postTitle}</CardTitle>
@@ -61,22 +58,25 @@ const PostComponent = ({
               <span className="font-semibold">{experience} years</span>
             </CardDescription>
             <CardDescription className="flex items-center gap-4">
-              {localisation}
+              <GoLocation/>{localisation}
             </CardDescription>
             <CardDescription className="flex items-center gap-4 font-bold">
               {" "}
               <FaHouse />
               {company}
             </CardDescription>
-            <CardDescription className="mt-2 text-black font-semibold">${price} / 60-min</CardDescription>
+            <CardDescription className="mt-2 text-black font-semibold">
+              ${price} / 60-min
+            </CardDescription>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="p-1 flex justify-between ">
+      <CardContent className="p-1 flex justify-between flex-wrap gap-2">
         <CardDescription className=" max-w-[900px]">
-          {description.slice(0,400)} <span className="opacity-60">learn more...</span>
+          {description.slice(0, 400)}{" "}
+          <span className="opacity-60">learn more...</span>
         </CardDescription>
-        
+
         <div>
           <Button className="bg-[#230E49]" onClick={learnMore}>
             learn more{" "}

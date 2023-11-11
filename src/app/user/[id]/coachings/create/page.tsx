@@ -1,7 +1,7 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import { Form, FormField } from "@/components/ui/form";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TPost } from "@/types/post";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,17 +20,21 @@ import { UploadDropzone } from "@uploadthing/react";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const postSchema = z.object({
   title: z.string(),
   description: z.string(),
-  price: z.number().or(
-    z
-      .string()
-      .transform(Number)
-  ),
+  price: z.number().or(z.string().transform(Number)),
   yearsExperience: z.string(),
-  imageUrl: z.any(),
+  sessionFormat: z.string(),
+  // imageUrl: z.any(),
   currentCompany: z.string(),
   isBooked: z.boolean().optional(),
   localisation: z.string(),
@@ -47,7 +51,7 @@ const Create = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
   const [avalaibles, setAvaibilties] = useState<Date[]>([]);
   const [imgUrl, setImgUrl] = useState<string | undefined>("");
-  
+
   const formValidation = useForm<Post>({
     resolver: zodResolver(postSchema),
   });
@@ -55,7 +59,6 @@ const Create = ({ params }: { params: { id: string } }) => {
   const PostSubmit: SubmitHandler<
     Omit<TPost, "userId" | "profilePic">
   > = async (data: Omit<TPost, "userId" | "profilePic">) => {
-    
     // error handling
 
     if (Object.keys(formValidation.formState.errors).length !== 0) {
@@ -65,11 +68,11 @@ const Create = ({ params }: { params: { id: string } }) => {
     }
 
     data.disponibilities = avalaibles;
-    data.imageUrl = imgUrl;
-    console.log(data);
+    // data.imageUrl = imgUrl;
     const {
-      imageUrl,
+      // imageUrl,
       description,
+      sessionFormat,
       title,
       yearsExperience,
       localisation,
@@ -85,10 +88,11 @@ const Create = ({ params }: { params: { id: string } }) => {
     try {
       // first endpoint call -- save post details
       const res = await axios.post("/api/post", {
-        imageUrl,
+        // imageUrl,
         userId: params.id,
         description,
         localisation,
+        sessionFormat,
         title,
         yearsExperience,
         currentCompany,
@@ -125,8 +129,25 @@ const Create = ({ params }: { params: { id: string } }) => {
         className=" p-4 flex flex-col gap-4 border border-dashed max-w-[1600px] m-auto mt-11 min-h-[400px] rounded-sm border-slate-300 sm:max-w-[80%]"
         onSubmit={formValidation.handleSubmit(PostSubmit)}
       >
-        <Label>1 - Upload your Image</Label>
-        <UploadDropzone<OurFileRouter>
+        <Label>1 - chose what Zoom format you do</Label>
+        <FormField
+          control={formValidation.control}
+          name="sessionFormat"
+          render={({ field }) => (
+            <Select onValueChange={field.onChange}>
+              <SelectTrigger className="">
+                <SelectValue placeholder="what Zoom format you prefer" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="video call">Video call</SelectItem>
+                <SelectItem value="audio call only ">Audio call only</SelectItem>
+              </SelectContent>
+            </Select>
+            
+          )}
+        />
+        {/* video ou audiao */}
+        {/* <UploadDropzone<OurFileRouter>
           className="ut-button:bg-[#230E49] ut-label:text-md"
           endpoint="image"
           onClientUploadComplete={(res) => {
@@ -142,7 +163,7 @@ const Create = ({ params }: { params: { id: string } }) => {
           onUploadBegin={(name) => {
             console.log("Uploading: ", name);
           }}
-        />
+        />  */}
 
         <Label>Post title</Label>
         <Input placeholder="Post title" {...formValidation.register("title")} />
@@ -176,11 +197,13 @@ const Create = ({ params }: { params: { id: string } }) => {
           />
           <Label>localisation</Label>
           <Input
-            placeholder="ex:San Fransisco"
+            placeholder="ex:United States"
             {...formValidation.register("localisation")}
           />
         </div>
-        <Label className="text-lg">Social medias</Label>
+        <Label className="text-lg">
+          Social medias <span className="text-xs opacity-40">(optional)</span>
+        </Label>
         <div className="flex items-center p-4 gap-4 border-dotted rounded-md">
           <Label className="text-xl opacity-40">
             <AiFillLinkedin />

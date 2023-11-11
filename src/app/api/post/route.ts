@@ -5,7 +5,8 @@ import { TPost } from "@/types/post";
 export const POST = async (req: Request) => {
 
     const {
-        imageUrl,
+        // imageUrl,
+        sessionFormat,
         userId,
         title,
         price,
@@ -35,7 +36,8 @@ export const POST = async (req: Request) => {
 
         const createPost = await prisma.post.create({
             data: {
-                profilePic: imageUrl,
+                // profilePic: imageUrl,
+                sessionFormat,
                 experienceField,
                 description,
                 Title: title,

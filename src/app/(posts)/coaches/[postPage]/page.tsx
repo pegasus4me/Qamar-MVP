@@ -110,7 +110,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
         className="font-semibold text-[#230E49] flex gap-3 p-2 mb-6 hove:text-slate-300"
       >
         <ArrowLeft />
-        view all coaches
+        /coaches
       </Link>
       {data?.length !== 0 ? (
         data?.map((v: TPost, index: number) => (
@@ -120,7 +120,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
           >
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
               <div className="flex gap-4">
-                <div>
+                {/* <div>
                   {v.profilePic && (
                     <Image
                       src={String(v?.profilePic)}
@@ -130,9 +130,15 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                       className="rounded-xs"
                     ></Image>
                   )}
-                </div>
+                </div> */}
                 <div>
-                  <h2 className="text-xl font-medium">{v.author?.name}</h2>
+                  <div className="flex gap-3 mb-3">
+                    <h2 className="text-xl font-medium opacity-40">
+                      @qs-{v.author?.name}
+                    </h2>
+                    <Badge variant="destructive">{v.sessionFormat}</Badge>
+                  </div>
+
                   <h1 className="text-3xl font-semibold">{v.Title}</h1>
                   <Badge variant="outline" className="mt-4">
                     {v?.experienceField}
@@ -197,7 +203,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               </div>
               <div className="mt-5">
                 <p className="flex gap-1 text-[#230E49] font-medium">
-                how does booking a coach work?
+                  how does booking a coach work?
                   <ShieldQuestion />
                 </p>
                 <div className="font-medium mt-6 text-[#475569]">
@@ -212,8 +218,8 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   <p className="mb-2">3 - confirm your booking</p>
                   <p className="mb-2">
                     4 - go to your coaching section and pay for the session.
-                    Your money is held  until you validate through an email
-                    that all goes well with your interviewer
+                    Your money is held until you validate through an email that
+                    all goes well with your interviewer
                   </p>
                 </div>
               </div>

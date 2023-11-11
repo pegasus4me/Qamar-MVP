@@ -19,6 +19,7 @@ export type TPost = {
     Title? : string
     author? : Author
     authorName?: string
+    sessionFormat : string
 }
 
 export interface ExtendPost extends TPost {

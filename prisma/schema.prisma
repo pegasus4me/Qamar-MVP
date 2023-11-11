@@ -82,6 +82,7 @@ model Post {
     whatsApp        String?
     twitter         String?
     profilePic      String?
+    sessionFormat   String?
     // image           Image?
     Reservation     Reservation[]
 }

@@ -37,7 +37,6 @@ const Posts = () => {
         {datas.length !== 0 ? (
           datas.map((v: TPost, index: number) => {
             const {
-              profilePic,
               Title,
               currentCompany,
               description,
@@ -47,11 +46,11 @@ const Posts = () => {
               experienceField,
               id,
               author,
+              sessionFormat
             } = v;
             return (
               <PostComponent
                 key={index}
-                imageurl={profilePic}
                 name={author?.name}
                 experienceFiled={experienceField}
                 learnMore={() => router.push(`/coaches/${id}`)}
@@ -59,6 +58,7 @@ const Posts = () => {
                 description={description}
                 experience={yearsExperience}
                 localisation={localisation}
+                sessionFormat={sessionFormat}
                 price={String(price)}
                 company={currentCompany}
               />
