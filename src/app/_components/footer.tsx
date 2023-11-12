@@ -48,7 +48,7 @@ const Footer = () => {
         <a href="https://twitter.com/QamarStudio_">
           <Twitter />
         </a>
-        <a href="https://twitter.com/QamarStudio_">
+        <a href="https://join.slack.com/t/qamarstudio/shared_invite/zt-26lf9rxdw-0N5_RGIkWu1Te2LRdOQxuA">
           <FaSlack className="text-xl" />
         </a>
       </div>
