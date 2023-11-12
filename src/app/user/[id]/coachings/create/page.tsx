@@ -134,7 +134,7 @@ const Create = ({ params }: { params: { id: string } }) => {
         className=" p-4 flex flex-col gap-4 border border-dashed max-w-[1600px] m-auto mt-11 min-h-[400px] rounded-sm border-slate-300 sm:max-w-[80%]"
         onSubmit={formValidation.handleSubmit(PostSubmit)}
       >
-        <Label>1 - chose what Zoom format you do</Label>
+        <Label>1 - Choose the Zoom format you use</Label>
         <FormField
           control={formValidation.control}
           name="sessionFormat"
