@@ -48,9 +48,7 @@ const Posts = () => {
               sessionFormat
             } = v;
             return (
-              <div className="mb-4"
-              key={index}
-              >
+              
               <PostComponent
                 key={index}
                 name={author?.name}
@@ -64,7 +62,6 @@ const Posts = () => {
                 price={String(price)}
                 company={currentCompany}
               />
-              </div>
             );
           })
         ) : (
