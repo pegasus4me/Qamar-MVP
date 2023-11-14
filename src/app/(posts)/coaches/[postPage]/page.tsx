@@ -106,12 +106,12 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
-
+// 
   return (
-    <div className=" p-5 md:max-w-[1900px] m-auto max-w-[1600px] ">
+    <section className=" md:max-w-[1900px] m-auto max-w-[1600px] p-5  min-h-fit">
       <Link
         href="/coaches"
-        className="font-semibold text-[#230E49] flex gap-3 p-2 mb-6 hove:text-slate-300"
+        className="font-semibold text-[#230E49] flex gap-3 p-2 mb-6"
       >
         <ArrowLeft />
         /coaches
@@ -120,10 +120,10 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
         data?.map((v: TPost, index: number) => (
           <div
             key={index}
-            className="flex lg:justify-between lg:max-w-full lg:h-[1060px] lg:flex-row flex-col max-w-fit gap-5"
+            className="flex lg:justify-between lg:max-w-full  lg:flex-row flex-col max-w-fit gap-5   h-fit p-1"
           >
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300 h-fit">
-              <div className="flex gap-4">
+              <div className="flex gap-4 p-3">
                 {/* <div>
                   {v.profilePic && (
                     <Image
@@ -191,7 +191,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                 />
               </div>
 
-              <div className="flex gap-5 mt-5 p-3">
+              <div className="flex gap-5 mt-5 p-3 border ">
                 <p className="text-sm text-[#230E49] flex items-center gap-4">
                   <Globe />
                   60-min 1:1 session
@@ -205,7 +205,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                   sessions hosted on Zoom
                 </p>
               </div>
-              <div className="mt-5 p-3">
+              <div className="mt-5 p-3 h-fit opacity-50">
                 <p className="flex gap-1 text-[#230E49] font-medium">
                   how does booking a coach work?
                   <ShieldQuestion />
@@ -250,7 +250,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
         </div>
       )}
       <Toaster />
-    </div>
+    </section>
   );
 };
 
