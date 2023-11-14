@@ -108,7 +108,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
   }
 
   return (
-    <div className=" p-5 md:max-w-[1900px] m-auto max-w-[1600px]">
+    <div className=" p-5 md:max-w-[1900px] m-auto max-w-[1600px] ">
       <Link
         href="/coaches"
         className="font-semibold text-[#230E49] flex gap-3 p-2 mb-6 hove:text-slate-300"
@@ -122,7 +122,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
             key={index}
             className="flex lg:justify-between lg:max-w-full lg:h-[1060px] lg:flex-row flex-col max-w-fit gap-5"
           >
-            <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300">
+            <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300 h-fit">
               <div className="flex gap-4">
                 {/* <div>
                   {v.profilePic && (
