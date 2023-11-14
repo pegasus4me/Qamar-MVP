@@ -48,7 +48,9 @@ const Posts = () => {
               sessionFormat
             } = v;
             return (
-              <div className="mb-4">
+              <div className="mb-4"
+              key={index}
+              >
               <PostComponent
                 key={index}
                 name={author?.name}

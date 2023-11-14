@@ -6,3 +6,5 @@ update #3
     update landing page text
     update username to pseudonym 
     added login in front of register to improive UX
+
+big update #4
