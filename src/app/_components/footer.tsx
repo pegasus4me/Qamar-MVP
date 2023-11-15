@@ -6,7 +6,7 @@ import { FaSlack } from "react-icons/fa6";
 import Link from "next/link";
 const Footer = () => {
   return (
-    <footer className="bg-neutral-100 max-w-[70%] m-auto mb-5 rounded-md p-3  ">
+    <footer className="bg-neutral-100 max-w-[70%] m-auto mb-5 rounded-md p-3  mt-5">
       <div className="flex justify-around items-center">
         <div>
           <Image src={logo} alt="logo"></Image>
