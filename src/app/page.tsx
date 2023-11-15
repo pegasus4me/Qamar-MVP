@@ -81,9 +81,7 @@ export default function Home() {
             </p>
             <div className="mt-5">
               <p className="text-xl max-w-[60%] font-light">
-                Your interviewer will be an expert with extensive experience as
-                a consultant at top firms. You'll run through exactly the kinds
-                of questions you'd see in a real case interview.
+                {"Your interviewer will be an expert with extensive experience as a consultant at top firms. You'll run through exactly the kind of questions you'd see in a real case interview."}
               </p>
             </div>
           </div>
@@ -111,8 +109,7 @@ export default function Home() {
             </h3>
             <p className="text-xl max-w-[60%] font-light">
 
-              You'll join your interviewer in a Zoom session for a fully
-              anonymous session with audio and chat (video is optional).
+             { "You'll join your interviewer in a Zoom session for a fully anonymous session with audio and chat (video is optional)." }
             </p>
             <div className="mt-4">
               <h3 className="font-semibold text-xl mb-5 max-w-[700px]">
