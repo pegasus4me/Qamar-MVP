@@ -110,6 +110,7 @@ export default function Home() {
               Meet with your interviewer for virtual, fully anonymous sessions
             </h3>
             <p className="text-xl max-w-[60%] font-light">
+              
               You&apos;ll join your interviewer in a Zoom session for a fully
               anonymous session with audio and chat (video is optional).
             </p>
