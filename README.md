@@ -8,3 +8,4 @@ update #3
     added login in front of register to improive UX
 
 big update #4
+    refonte landing page #1
