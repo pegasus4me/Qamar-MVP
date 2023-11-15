@@ -19,6 +19,7 @@ import { PiPlusCircleBold } from "react-icons/pi";
 import { useEffect } from "react";
 const Header = () => {
   const router = useRouter();
+  
   const { data: session, status } = useSession();
   useEffect(() => {}, [session]);
 

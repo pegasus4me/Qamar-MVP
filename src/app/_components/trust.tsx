@@ -14,9 +14,7 @@ import pwc from "../../asset/PngItem_1984452.png";
 function Trust() {
   return (
     <>
-      <Marquee gradient={false} gradientWidth={300} speed={50} autoFill={true}
-
-      >
+      <Marquee gradient={false} gradientWidth={300} speed={50} autoFill={true}>
         <article className="flex items-center opacity-60">
           <div className="m-5">
             <Image src={Microsoft} width={160} alt="logo" />
