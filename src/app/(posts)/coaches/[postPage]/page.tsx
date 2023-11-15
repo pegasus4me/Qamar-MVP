@@ -117,10 +117,10 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
         /coaches
       </Link>
       {data?.length !== 0 ? (
-        data?.map((v: TPost) => (
+        data?.map((v: TPost, index:number) => (
           <div
-            
             className="flex lg:justify-between lg:max-w-full  lg:flex-row flex-col max-w-fit gap-5   h-fit p-1"
+            key={index}
           >
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300 h-fit">
               <div className="flex gap-4 p-3">
