@@ -214,7 +214,7 @@ const Create = ({ params }: { params: { id: string } }) => {
             <AiFillLinkedin />
           </Label>
           <Input
-            placeholder="linkedin link"
+            placeholder="www.linkedin.com/in/your_account"
             {...formValidation.register("linkedin")}
           />
           <Label className="text-xl opacity-40">
@@ -228,7 +228,7 @@ const Create = ({ params }: { params: { id: string } }) => {
             <FaSquareXTwitter />
           </Label>
           <Input
-            placeholder="twitter link"
+            placeholder="www.twitter.com/your_account"
             {...formValidation.register("twitter")}
           />
         </div>

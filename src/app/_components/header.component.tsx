@@ -108,7 +108,7 @@ const Header = () => {
           {session?.user?.Role === "COACH" ? (
             <>
               <Button
-                className="hidden md:flex md:gap-2 bg-[#230E49]"
+                className="hidden md:flex md:gap-2 bg-[#230E49] relative z-50"
                 onClick={() =>
                   router.push(`/user/${session.user.id}/coachings/create`)
                 }

@@ -163,7 +163,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               </div>
               <div className="flex gap-5">
                 <Badge variant="outline" className="mt-4 cursor-pointer">
-                  <a href={v?.linkedin as string}>Linkedin</a>
+                  <a href={`https://${v?.linkedin}`}>Linkedin</a>
                 </Badge>
                 <Badge variant="outline" className="mt-4 cursor-pointer">
                   <a href={v?.twitter as string}>Twitter</a>
@@ -191,7 +191,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
                 />
               </div>
 
-              <div className="flex gap-5 mt-5 p-3 border ">
+              <div className="flex gap-5 mt-5 p-3">
                 <p className="text-sm text-[#230E49] flex items-center gap-4">
                   <Globe />
                   60-min 1:1 session

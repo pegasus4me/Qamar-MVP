@@ -47,6 +47,7 @@
     "react-icons-kit": "^2.0.0",
     "react-loader-spinner": "^5.4.5",
     "react-spinners": "^0.13.8",
+    "sharp": "^0.32.6",
     "stripe": "^14.3.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
