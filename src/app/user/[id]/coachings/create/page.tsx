@@ -11,7 +11,7 @@ import { AiFillLinkedin } from "react-icons/ai";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { DateTimePicker } from "@/app/_components/dateTime.component";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import z from "zod";
@@ -46,16 +46,13 @@ const postSchema = z.object({
 export type Post = z.infer<typeof postSchema>;
 
 const Create = ({ params }: { params: { id: string } }) => {
-
-  
   const { toast } = useToast();
   const router = useRouter();
   const { data: session } = useSession();
   const [avalaibles, setAvaibilties] = useState<Date[]>([]);
   const [imgUrl, setImgUrl] = useState<string | undefined>("");
 
-  useEffect(() => {},[session])
-
+  useEffect(() => {}, [session]);
 
   const formValidation = useForm<Post>({
     resolver: zodResolver(postSchema),
@@ -145,10 +142,11 @@ const Create = ({ params }: { params: { id: string } }) => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="video call">Video call</SelectItem>
-                <SelectItem value="audio call only ">Audio call only</SelectItem>
+                <SelectItem value="audio call only ">
+                  Audio call only
+                </SelectItem>
               </SelectContent>
             </Select>
-            
           )}
         />
         {/* video ou audiao */}
@@ -237,13 +235,24 @@ const Create = ({ params }: { params: { id: string } }) => {
         <DateTimePicker
           date={new Date()}
           setDate={(date: Date) => {
-            setAvaibilties((previous) => [...previous, date]);
+            setAvaibilties((previous: Date[]) => {
+              // Vérifie si la date existe déjà dans le tableau
+              const isDateAlreadyInArray = previous.some(
+                (existingDate) => existingDate.getTime() === date.getTime()
+              );
+              // Si la date n'existe pas déjà, ajoutez-la au tableau
+              if (!isDateAlreadyInArray) {
+                return [...previous, date];
+              }
+
+              return previous;
+            });
           }}
         />
+        
         <Button
           type="submit"
-          className="mt-5 w-full bg-[#230E49] hover:bg-indigo-950 max-w-[500px] m-auto"
-        >
+          className="mt-5 w-full bg-[#230E49] hover:bg-indigo-950 max-w-[500px] m-auto">
           create post
         </Button>
       </form>

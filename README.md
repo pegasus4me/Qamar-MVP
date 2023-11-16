@@ -9,3 +9,6 @@ update #3
 
 big update #4
     refonte landing page #1
+    fixed doublons sur la date pick
+    fix redirect socials 
+    
