@@ -163,7 +163,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               </div>
               <div className="flex gap-5">
                 <Badge variant="outline" className="mt-4 cursor-pointer">
-                  <a href={`https://${v?.linkedin}`}>Linkedin</a>
+                  <a href={`${v?.linkedin?.charAt(0) !== "h" ? `https://${v?.linkedin}` : `${v?.linkedin}` }`}>Linkedin</a>
                 </Badge>
                 <Badge variant="outline" className="mt-4 cursor-pointer">
                   <a href={v?.twitter as string}>Twitter</a>

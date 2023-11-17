@@ -41,18 +41,20 @@ model Session {
 }
 
 model User {
-    id             String  @id @default(auto()) @map("_id") @db.ObjectId
-    email          String  @unique
-    name           String
-    profile_pic    String?
-    hashedPassword String?
-    Role         Role
-    Reservations Reservation[]
-    Posts        Post[]
-    Profile      Profile?
-    Session      Session[]
-    Accounts     Account[]
+    id                String        @id @default(auto()) @map("_id") @db.ObjectId
+    email             String        @unique
+    name              String
+    profile_pic       String?
+    hashedPassword    String?
+    Role              Role
+    Reservations      Reservation[]
+    Posts             Post[]
+    Profile           Profile?
+    Session           Session[]
+    Accounts          Account[]
     // image        Image?
+    // SessionsCompleted Int
+    // ratings           Int
 }
 
 model Profile {
@@ -87,13 +89,12 @@ model Post {
     Reservation     Reservation[]
 }
 
-
 model Reservation {
     id            String   @id @default(auto()) @map("_id") @db.ObjectId
     reservedBy    User     @relation(fields: [authorId], references: [id])
     authorId      String   @db.ObjectId
     postReference Post     @relation(fields: [postId], references: [id])
-    authorName    String? 
+    authorName    String?
     postId        String   @db.ObjectId
     createdAt     DateTime @default(now())
     payed         Boolean  @default(false)
