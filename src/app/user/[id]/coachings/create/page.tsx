@@ -27,6 +27,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Default from '../../../../../../public/assets/default.jpg'
+import { StaticImageData } from "next/image";
 
 const postSchema = z.object({
   title: z.string(),
@@ -34,7 +36,7 @@ const postSchema = z.object({
   price: z.number().or(z.string().transform(Number)),
   yearsExperience: z.string(),
   sessionFormat: z.string(),
-  // imageUrl: z.any(),
+  imageUrl: z.any(),
   currentCompany: z.string(),
   isBooked: z.boolean().optional(),
   localisation: z.string(),
@@ -50,7 +52,7 @@ const Create = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const { data: session } = useSession();
   const [avalaibles, setAvaibilties] = useState<Date[]>([]);
-  const [imgUrl, setImgUrl] = useState<string | undefined>("");
+  const [imgUrl, setImgUrl] = useState<string | StaticImageData | undefined>("https://www.jsconsulting.kz/assets/img/noImg.jpg");
 
   useEffect(() => {}, [session]);
 
@@ -70,9 +72,9 @@ const Create = ({ params }: { params: { id: string } }) => {
     }
 
     data.disponibilities = avalaibles;
-    // data.imageUrl = imgUrl;
+    data.imageUrl = imgUrl as string;
     const {
-      // imageUrl,
+      imageUrl,
       description,
       sessionFormat,
       title,
@@ -90,7 +92,7 @@ const Create = ({ params }: { params: { id: string } }) => {
     try {
       // first endpoint call -- save post details
       const res = await axios.post("/api/post", {
-        // imageUrl,
+        imageUrl,
         userId: params.id,
         description,
         localisation,
@@ -131,7 +133,25 @@ const Create = ({ params }: { params: { id: string } }) => {
         className=" p-4 flex flex-col gap-4 border border-dashed max-w-[1600px] m-auto mt-11 min-h-[400px] rounded-sm border-slate-300 sm:max-w-[80%]"
         onSubmit={formValidation.handleSubmit(PostSubmit)}
       >
-        <Label>1 - Choose the Zoom format you use</Label>
+        <Label>1.upload your profile picture <span className="opacity-40 text-xs">(optional)</span></Label>
+        <UploadDropzone<OurFileRouter>
+          className="ut-button:bg-[#230E49] ut-label:text-md"
+          endpoint="image"
+          onClientUploadComplete={(res) => {
+            setImgUrl(res?.[0].url);
+            toast({
+              title: "image uploaded",
+              description : "image succesfully uploaded you can continue!"
+            });
+          }}
+          onUploadError={(error: Error) => {
+            alert(`ERROR! ${error.message}`);
+          }}
+          onUploadBegin={(name) => {
+            console.log("Uploading: ", name);
+          }}
+        /> 
+        <Label>2.Choose the Zoom format you use</Label>
         <FormField
           control={formValidation.control}
           name="sessionFormat"
@@ -150,23 +170,7 @@ const Create = ({ params }: { params: { id: string } }) => {
           )}
         />
         {/* video ou audiao */}
-        {/* <UploadDropzone<OurFileRouter>
-          className="ut-button:bg-[#230E49] ut-label:text-md"
-          endpoint="image"
-          onClientUploadComplete={(res) => {
-            setImgUrl(res?.[0].url);
-            toast({
-              title: "image uploaded",
-              description : "image succesfully uploaded you can continue!"
-            });
-          }}
-          onUploadError={(error: Error) => {
-            alert(`ERROR! ${error.message}`);
-          }}
-          onUploadBegin={(name) => {
-            console.log("Uploading: ", name);
-          }}
-        />  */}
+        
 
         <Label>Post title</Label>
         <Input placeholder="Post title" {...formValidation.register("title")} />

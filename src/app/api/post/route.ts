@@ -7,7 +7,7 @@ export const POST = async (req: Request) => {
 
     // authorName
     const {
-        // imageUrl,
+        imageUrl,
         sessionFormat,
         userId,
         title,
@@ -38,7 +38,7 @@ export const POST = async (req: Request) => {
 
         const createPost = await prisma.post.create({
             data: {
-                // profilePic: imageUrl,
+                profilePic: imageUrl,
                 sessionFormat,
                 experienceField,
                 description,

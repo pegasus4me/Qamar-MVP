@@ -11,4 +11,10 @@ big update #4
     refonte landing page #1
     fixed doublons sur la date pick
     fix redirect socials 
+
+
+update #5
+
+add upload image profile
+add default no image if user want to be anonymoys
     

@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { FaHouse } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { GoLocation } from "react-icons/go";
-
+import Image from "next/image";
 import { ArrowDownRightIcon } from "lucide-react";
 import {
   Card,
@@ -24,7 +24,8 @@ type PostComponent = {
   price: string;
   company: string;
   sessionFormat: string;
-};
+  image: string
+}
 
 const PostComponent = ({
   name,
@@ -37,10 +38,12 @@ const PostComponent = ({
   localisation,
   price,
   company,
+  image
 }: PostComponent) => {
   return (
     <Card className="max-w-[1300px] border p-3 m-auto mt-3">
-      <CardHeader className="flex flex-row gap-4 items-center">
+      <CardHeader className="flex flex-row gap-4 items-center ">
+        <Image src={image as string} alt="user image" height={170} width={170} className="rounded-xl"/>
         <div className="flex flex-col gap-3">
           <div className="flex gap-4 items-center p-1">
             <CardTitle className="text-md opacity-40">@qs-{name}</CardTitle>

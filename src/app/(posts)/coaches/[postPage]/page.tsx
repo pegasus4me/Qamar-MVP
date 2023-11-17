@@ -96,7 +96,6 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       return;
     }
 
-
     if (sendNewReservation.status === 200 && session?.user.id) {
       toast({
         title: "Successfully pre-booked!",
@@ -106,7 +105,7 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
       router.push(`/user/${session?.user.id}/coachings`);
     }
   }
-// 
+  //
   return (
     <section className=" md:max-w-[1900px] m-auto max-w-[1600px] p-5  min-h-fit">
       <Link
@@ -117,24 +116,26 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
         /coaches
       </Link>
       {data?.length !== 0 ? (
-        data?.map((v: TPost, index:number) => (
+        data?.map((v: TPost, index: number) => (
           <div
             className="flex lg:justify-between lg:max-w-full  lg:flex-row flex-col max-w-fit gap-5   h-fit p-1"
             key={index}
           >
             <div className="p-5 :min-w-[1300px] border min-h-[50%] border-dashed rounded-md border-slate-300 h-fit">
               <div className="flex gap-4 p-3">
-                {/* <div>
-                  {v.profilePic && (
-                    <Image
-                      src={String(v?.profilePic)}
-                      alt="image user"
-                      width={170}
-                      height={170}
-                      className="rounded-xs"
-                    ></Image>
-                  )}
-                </div> */}
+                <div>
+                  <Image
+                    src={`${
+                      v.profilePic === null
+                        ? "https://www.jsconsulting.kz/assets/img/noImg.jpg"
+                        : String(v?.profilePic)
+                    }`}
+                    alt="image user"
+                    width={170}
+                    height={170}
+                    className="rounded-xl"
+                  ></Image>
+                </div>
                 <div>
                   <div className="flex gap-3 mb-3">
                     <h2 className="text-xl font-medium opacity-40">
@@ -163,7 +164,15 @@ const PostPage = ({ params }: { params: { postPage: string } }) => {
               </div>
               <div className="flex gap-5">
                 <Badge variant="outline" className="mt-4 cursor-pointer">
-                  <a href={`${v?.linkedin?.charAt(0) !== "h" ? `https://${v?.linkedin}` : `${v?.linkedin}` }`}>Linkedin</a>
+                  <a
+                    href={`${
+                      v?.linkedin?.charAt(0) !== "h"
+                        ? `https://${v?.linkedin}`
+                        : `${v?.linkedin}`
+                    }`}
+                  >
+                    Linkedin
+                  </a>
                 </Badge>
                 <Badge variant="outline" className="mt-4 cursor-pointer">
                   <a href={v?.twitter as string}>Twitter</a>

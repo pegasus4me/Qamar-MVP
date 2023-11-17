@@ -45,8 +45,11 @@ const Posts = () => {
               experienceField,
               id,
               author,
-              sessionFormat
+              sessionFormat,
+              profilePic
             } = v;
+
+            console.log(profilePic)
             return (
               
               <PostComponent
@@ -60,8 +63,9 @@ const Posts = () => {
                 localisation={localisation}
                 sessionFormat={sessionFormat}
                 price={String(price)}
-                company={currentCompany}
-              />
+                company={currentCompany} 
+                image={`${profilePic === null ? "https://www.jsconsulting.kz/assets/img/noImg.jpg" : profilePic}`}
+                />
             );
           })
         ) : (
