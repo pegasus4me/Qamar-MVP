@@ -45,7 +45,7 @@ const PostComponent = ({
       <CardHeader className="flex flex-row gap-4 items-center ">
         <Image src={image as string} alt="user image" height={170} width={170} className="rounded-xl"/>
         <div className="flex flex-col gap-3">
-          <div className="flex gap-4 items-center p-1 border flex-wrap">
+          <div className="flex gap-4 items-center p-1 flex-wrap">
             <CardTitle className="text-md opacity-40">@qs-{name}</CardTitle>
             <Badge variant="outline">{experienceFiled}</Badge>
           </div>
