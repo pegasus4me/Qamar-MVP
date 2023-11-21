@@ -1,13 +1,15 @@
+"use client";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Trust from "./_components/trust";
 import Book from "../../public/assets/book.svg";
 import Review from "../../public/assets/review.svg";
-
+import { useSession } from "next-auth/react";
 import { Check } from "lucide-react";
 import bg from "../asset/back.webp";
 export default function Home() {
+  const { status } = useSession();
   return (
     <main className="m-auto">
       <Image
@@ -34,9 +36,17 @@ export default function Home() {
         </section>
         <div className="flex justify-center gap-3 w-fit m-auto p-3 mt-6">
           <div className="">
-            <Button className="bg-[#230E49] relative z-50">
-              <Link href="/coaches">browse coaches</Link>
-            </Button>
+            {status === "unauthenticated" ? (
+              <Button className="bg-[#230E49] relative z-50">
+                <Link href="/login">login</Link>
+              </Button>
+            ) : status === "authenticated" ? (
+              <Button className="bg-[#230E49] relative z-50">
+                <Link href="/coaches">browse coaches</Link>
+              </Button>
+            ) : (
+              null 
+            )}
           </div>
         </div>
       </section>
@@ -81,7 +91,9 @@ export default function Home() {
             </p>
             <div className="mt-5">
               <p className="text-xl max-w-[60%] font-light">
-                {"Your interviewer will be an expert with extensive experience as a consultant at top firms. You'll run through exactly the kind of questions you'd see in a real case interview."}
+                {
+                  "Your interviewer will be an expert with extensive experience as a consultant at top firms. You'll run through exactly the kind of questions you'd see in a real case interview."
+                }
               </p>
             </div>
           </div>
@@ -108,8 +120,9 @@ export default function Home() {
               Meet with your interviewer for virtual, fully anonymous sessions
             </h3>
             <p className="text-xl max-w-[60%] font-light">
-
-             { "You'll join your interviewer in a Zoom session for a fully anonymous session with audio and chat (video is optional)." }
+              {
+                "You'll join your interviewer in a Zoom session for a fully anonymous session with audio and chat (video is optional)."
+              }
             </p>
             <div className="mt-4">
               <h3 className="font-semibold text-xl mb-5 max-w-[700px]">
