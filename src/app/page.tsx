@@ -22,7 +22,7 @@ export default function Home() {
         <section className="lg:mt-32 mt-11 " id="hero">
           <div className="text-2xl sm:text-2xl md:text-3xl flex justify-center mt-5 lg:text-6xl font-semibold text-center max-w-[100%] m-auto md:max-w-[80%] ">
             <h1 className="text-slate-800">
-              Anonymous mock case interviews with consultants from Mckenzie
+              Mock case interviews with consultants from Mckenzie
               Deloitte, BCG, PWC and other top firms
             </h1>
           </div>
@@ -38,7 +38,7 @@ export default function Home() {
           <div className="">
             {status === "unauthenticated" ? (
               <Button className="bg-[#230E49] relative z-50">
-                <Link href="/login">login</Link>
+                <Link href="/login">login to continue</Link>
               </Button>
             ) : status === "authenticated" ? (
               <Button className="bg-[#230E49] relative z-50">
