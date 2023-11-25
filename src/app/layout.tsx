@@ -37,12 +37,12 @@ export default async function RootLayout({
   const session = await getSession(headers().get('cookie') ?? '');
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-[#FFF38C]`}>
         <Provider session={session}>
-          <Header/>
-          <Strip/>
+          {/* <Header/> */}
+          {/* <Strip/> */}
           {children}
-          <Footer/>
+          {/* <Footer/> */}
         </Provider>
         <Analytics />
       </body>
