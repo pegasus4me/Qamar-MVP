@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-neutral-100 max-w-[70%] m-auto mb-5 rounded-md p-3  mt-5">
       <div className="flex justify-around items-center">
         <div>
-          <Image src={logo} alt="logo"></Image>
+          <Image src={logo} alt="logo" width={140}></Image>
         </div>
         <div className=" font-medium text-neutral-500 mt-3 flex  flex-col gap-1 p-2">
           <a href="mailto:contact@qamarstudio.com" className="text-[#230E49]">

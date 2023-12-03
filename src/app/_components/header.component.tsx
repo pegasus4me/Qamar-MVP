@@ -27,8 +27,8 @@ const Header = () => {
 
   return (
     <div className=" justify-evenly flex md:justify-around items-center border-b border-neutral-400 ">
-      <div className="flex items-center">
-        <Image src={Logo} alt="logo"></Image>
+      <div className="flex items-center p-1 mt-5 ">
+        <Image src={Logo} alt="logo" width={140} className="mr-4"></Image>
 
         <div className="pl-4 border-l">
           {status === "authenticated" ? (
